@@ -1,1 +1,9 @@
 @import "tailwindcss";
+:root{
+    --main:#6A1B9A;
+    --white:#fff;
+    --mainhover:#983ad2fc;
+}
+*{
+    transition: all .3s;
+}

@@ -13,11 +13,11 @@ export const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="services" element={<ServicesPage />} />
-        <Route path="portfolio" element={<PortfolioPage />} />
-        <Route path="contact" element={<ContactPage />} />
-        <Route path="book-consultation" element={<BookingPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/book-consultation" element={<BookingPage />} />
       </Route>
     </Routes>
   );

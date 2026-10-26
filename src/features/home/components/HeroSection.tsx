@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react'
 import HeroSectionImage from '../../../assets/images/HeroSectionImage.png'
 import Button from '../../../components/ui/Button'
@@ -52,12 +51,3 @@ const HeroSection = () => {
 }
 
 export default HeroSection
-=======
-import React from 'react';
-
-const HeroSection = () => {
-  return <div>HeroSection</div>;
-};
-
-export default HeroSection;
->>>>>>> 0665989ee5b3c399b23d20e6326f73d711021846

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const NewsletterSubscribe = () => {
-  return (
-    <div>NewsletterSubscribe</div>
-  )
-}
+  return <div>NewsletterSubscribe</div>;
+};
 
-export default NewsletterSubscribe
+export default NewsletterSubscribe;

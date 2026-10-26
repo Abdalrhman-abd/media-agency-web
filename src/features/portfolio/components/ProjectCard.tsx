@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ProjectCard = () => {
-  return (
-    <div>ProjectCard</div>
-  )
-}
+  return <div>ProjectCard</div>;
+};
 
-export default ProjectCard
+export default ProjectCard;

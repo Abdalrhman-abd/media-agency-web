@@ -28,4 +28,4 @@ const FeatureServices = () => {
   )
 }
 
-export default FeatureServices
+export default FeatureServices;

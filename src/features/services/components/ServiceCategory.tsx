@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ServiceCategory = () => {
-  return (
-    <div>ServiceCategory</div>
-  )
-}
+  return <div>ServiceCategory</div>;
+};
 
-export default ServiceCategory
+export default ServiceCategory;

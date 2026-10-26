@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const portfolioFilter = () => {
-  return (
-    <div>portfolioFilter</div>
-  )
-}
+  return <div>portfolioFilter</div>;
+};
 
-export default portfolioFilter
+export default portfolioFilter;

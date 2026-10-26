@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ContactMap = () => {
-  return (
-    <div>ContactMap</div>
-  )
-}
+  return <div>ContactMap</div>;
+};
 
-export default ContactMap
+export default ContactMap;

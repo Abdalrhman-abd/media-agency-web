@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ServiceCard = () => {
-  return (
-    <div>ServiceCard</div>
-  )
-}
+  return <div>ServiceCard</div>;
+};
 
-export default ServiceCard
+export default ServiceCard;

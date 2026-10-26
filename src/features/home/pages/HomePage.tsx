@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from 'react';
+import SolutionsBanner from './../components/SolutionsBanner';
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <>
+      <SolutionsBanner />
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;

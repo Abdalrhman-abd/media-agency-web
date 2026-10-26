@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const BookingForm = () => {
-  return (
-    <div>BookingForm</div>
-  )
-}
+  return <div>BookingForm</div>;
+};
 
-export default BookingForm
+export default BookingForm;

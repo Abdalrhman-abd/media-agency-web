@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const TeamSection = () => {
-  return (
-    <div>TeamSection</div>
-  )
-}
+  return <div>TeamSection</div>;
+};
 
-export default TeamSection
+export default TeamSection;

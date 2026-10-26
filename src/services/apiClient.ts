@@ -1,11 +1,16 @@
-import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosError,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.media-agency.com/api/v1',
+  baseURL:
+    import.meta.env.VITE_API_BASE_URL || 'https://api.media-agency.com/api/v1',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Accept-Language': 'ar', // دعم واجهة الموقع العربية
   },
 });
@@ -20,7 +25,7 @@ apiClient.interceptors.request.use(
     }
     return config;
   },
-  (error: AxiosError) => Promise.reject(error)
+  (error: AxiosError) => Promise.reject(error),
 );
 
 // Response Interceptor
@@ -32,7 +37,7 @@ apiClient.interceptors.response.use(
       console.error('Validation Error:', error.response.data);
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default apiClient;

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const FeatureServices = () => {
-  return (
-    <div>FeatureServices</div>
-  )
-}
+  return <div>FeatureServices</div>;
+};
 
-export default FeatureServices
+export default FeatureServices;

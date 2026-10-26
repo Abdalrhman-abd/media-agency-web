@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const PortfolioPagination = () => {
-  return (
-    <div>PortfolioPagination</div>
-  )
-}
+  return <div>PortfolioPagination</div>;
+};
 
-export default PortfolioPagination
+export default PortfolioPagination;

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const FeaturePortfolio = () => {
-  return (
-    <div>FeaturePortfolio</div>
-  )
-}
+  return <div>FeaturePortfolio</div>;
+};
 
-export default FeaturePortfolio
+export default FeaturePortfolio;

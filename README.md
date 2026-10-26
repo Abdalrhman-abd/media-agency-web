@@ -17,9 +17,12 @@ If you are developing a production application, we recommend using TypeScript wi
 
 # Project Structure (Feature-Based Architecture)
 
-استخدمنا هيكليت الfeature-based في هذا المشروع  
 
-- `src/app/` -عداد التطبيقات  العامه 
+موقع إلكتروني لشركة إعلامية يعرض خدماتها، وأعمالها السابقة، ومعلومات التواصل معها.
+
+استخدمنا هيكليت الfeature-based في هذا المشروع
+
+- `src/app/` -عداد التطبيقات العامه
 - `src/shared/` - المكونات القابلة للإعادة الاستخدام
 - `src/features/` -هدول الصفات تحتوي على components
 - `src/assets/` - مكان الصور والايقونات

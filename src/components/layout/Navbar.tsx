@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
         <img src={logo} alt="logo" className='w-10 sm:w-12 lg:w-13.75 shrink-0' />
         <nav className='hidden lg:flex'>
           <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/">الرئيسية</Link>
-          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/من نحن">من نحن</Link>
+          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/about ">من نحن</Link>
           <div className="relative inline-block" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
             <button
               onClick={() => navigate('/services')}
@@ -72,8 +72,8 @@ const Navbar: React.FC = () => {
               </div>
             )}
           </div>
-          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/معرض الأعمال">معرض الأعمال</Link>
-          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/اتصل بنا">اتصل بنا</Link>
+          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/PortfolioPage">معرض الأعمال</Link>
+          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/ContactPage">اتصل بنا</Link>
         </nav>
         <div className='hidden lg:block'>
           <Button text="احجز استشارة" onClick={() => console.log('تم الضغط')} />
@@ -84,14 +84,22 @@ const Navbar: React.FC = () => {
       </header>
       {isOpen && (
         <nav className='fixed top-0 right-0 z-40 flex h-screen w-64 max-w-[85vw] flex-col gap-2 overflow-y-auto bg-white/80 backdrop-blur-md p-5 pt-20 shadow-xl lg:hidden'>
-          <Link className='p-3 text-xl rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/" onClick={() => setIsOpen(false)}>الرئيسية</Link>
-          <Link className='p-3 text-xl rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/من نحن" onClick={() => setIsOpen(false)}>من نحن</Link>
-          <button className='p-3 text-xl text-right rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' onClick={() => navigate('/الخدمات ')}>الخدمات</button>
+          <Link className='p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/" onClick={() => setIsOpen(false)}>الرئيسية</Link>
+          <Link className='p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/about" onClick={() => setIsOpen(false)}>من نحن</Link>
+          <button className='p-3 text-sm text-right rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' onClick={() => navigate('/services ')}>الخدمات</button>
+           <svg
+                className={`w-4 h-4 transition-transform duration-200 ${isOpen ? '' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
           {servicesList.map((service, index) => (
             <Link key={index} to={service.path} onClick={() => setIsOpen(false)} className='pr-7 py-2 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text'>{service.title}</Link>
           ))}
-          <Link className='p-3 text-xl rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/معرض الأعمال" onClick={() => setIsOpen(false)}>معرض الأعمال</Link>
-          <Link className='p-3 text-xl rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/اتصل بنا" onClick={() => setIsOpen(false)}>اتصل بنا</Link>
+          <Link className='p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/PortfolioPage" onClick={() => setIsOpen(false)}>معرض الأعمال</Link>
+          <Link className='p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text' to="/ContactPage" onClick={() => setIsOpen(false)}>اتصل بنا</Link>
           <div className='mt-2'>
             <Button text="احجز استشارة" onClick={() => console.log('تم الضغط')} />
           </div>

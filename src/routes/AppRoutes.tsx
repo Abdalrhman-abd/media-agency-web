@@ -7,6 +7,7 @@ import ServicesPage from '../features/services/pages/ServicesPage';
 import PortfolioPage from '../features/portfolio/pages/PortfolioPage';
 import ContactPage from '../features/contact/pages/ContactPage';
 import BookingPage from '../features/booking/pages/BookingPage';
+import NotFound from '../features/NotFound/NotFound';
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ export const AppRoutes: React.FC = () => {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/book-consultation" element={<BookingPage />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

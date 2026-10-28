@@ -72,8 +72,8 @@ const Navbar: React.FC = () => {
               </div>
             )}
           </div>
-          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/PortfolioPage">معرض الأعمال</Link>
-          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/ContactPage">اتصل بنا</Link>
+          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/portfolioPage">معرض الأعمال</Link>
+          <Link className='hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text p-3 inline-block px-7 text-xl' to="/contactPage">اتصل بنا</Link>
         </nav>
         <div className='hidden lg:block'>
           <Button text="احجز استشارة" onClick={() => console.log('تم الضغط')} />

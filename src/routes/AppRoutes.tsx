@@ -16,8 +16,8 @@ export const AppRoutes: React.FC = () => {
         <Route index element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/PortfolioPage" element={<PortfolioPage />} />
+        <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="/book-consultation" element={<BookingPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>

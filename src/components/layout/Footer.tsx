@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <>
-      <footer dir="rtl" className="w-full overflow-hidden">
+      <footer dir="" className="w-full overflow-hidden">
         <div className="relative flex flex-col lg:flex-row justify-around items-center gap-10 lg:gap-6 brand-gradient min-h-[575px] text-white px-5 sm:px-8 py-12 lg:py-8">
           <div className="order-1 flex flex-col items-center shrink-0">
             <img className="w-36 max-w-full object-contain" src={logo} />
@@ -99,7 +99,7 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={phone}
                     />
-                    <a href="tel:+96584112365" dir="ltr">
+                    <a href="tel:+96584112365" dir="">
                       {' '}
                       +965 841 123 65
                     </a>
@@ -110,7 +110,7 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={meeseg}
                     />
-                    <a href="mailto:info@media.com" dir="ltr">
+                    <a href="mailto:info@media.com" >
                       info@media.com
                     </a>
                   </div>
@@ -157,7 +157,7 @@ const Footer = () => {
             <p className="text-center text-xs leading-6 mt-8">
               {' '}
               جميع الحقوق المحفوظة 2026 شركة ميديا. تم التطوير بواسطة
-              <span dir="ltr">DEVM MND</span>
+              <span dir="">DEVM MND</span>
             </p>
           </div>
 

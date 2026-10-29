@@ -9,4 +9,9 @@ export interface Project {
   category: ProjectCategory;
   image: string;
   icon: string;
+  client?: string;
+  year?: string;
+  services?: string[];
+  description?: string;
+  gallery?: string[];
 }

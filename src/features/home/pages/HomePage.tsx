@@ -3,6 +3,7 @@ import HeroSection from '../components/HeroSection';
 import FeatureServices from '../components/FeatureServices';
 import SolutionsBanner from './../components/SolutionsBanner';
 import FeaturePortfolio from '../components/FeaturePortfolio';
+import TestimonialsSlider from '../components/testimonials/copmmponents/TestimonialsSlider';
 const HomePage = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const HomePage = () => {
       <FeatureServices />
       <FeaturePortfolio />
       <SolutionsBanner />
+      <TestimonialsSlider/>
     </>
   );
 };

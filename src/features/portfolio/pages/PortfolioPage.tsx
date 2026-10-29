@@ -21,7 +21,7 @@ const PortfolioPage = () => {
                 <p className="text-[13px] text-gray-500 mb-5">{project.subtitle}</p>
               </div>
               <div className="bg-gradient-to-r from-blue-800 to-purple-900 hover:from-blue-700 hover:to-purple-800 text-white w-8 h-8 rounded-full flex items-center justify-center p-3 flex-shrink-0 ml-5">
-                <img src={project.icon} alt="icon" className="w-full h-full object-contain" />
+                <img src={project.icon} alt="صوره للاعمال" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>

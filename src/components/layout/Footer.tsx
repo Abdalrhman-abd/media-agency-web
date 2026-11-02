@@ -99,7 +99,7 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={phone}
                     />
-                    <a href="tel:+96584112365" dir="ltr">
+                    <a href="tel:+96584112365" dir="">
                       {' '}
                       +965 841 123 65
                     </a>
@@ -110,7 +110,7 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={meeseg}
                     />
-                    <a href="mailto:info@media.com" dir="ltr">
+                    <a href="mailto:info@media.com" >
                       info@media.com
                     </a>
                   </div>
@@ -157,7 +157,7 @@ const Footer = () => {
             <p className="text-center text-xs leading-6 mt-8">
               {' '}
               جميع الحقوق المحفوظة 2026 شركة ميديا. تم التطوير بواسطة
-              <span dir="ltr">DEVM MND</span>
+              <span dir="">DEVM MND</span>
             </p>
           </div>
 

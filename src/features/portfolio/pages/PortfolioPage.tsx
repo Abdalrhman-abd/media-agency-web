@@ -1,3 +1,5 @@
+// import React from 'react';
+import { Link } from 'react-router-dom'; // 1. استيراد Link
 import React from 'react';
 import { Link } from 'react-router-dom'; 
 import { projectsData } from '../data';
@@ -13,6 +15,7 @@ const PortfolioPage = () => {
         <SectionTitle title='معرض أعمالنا' />
       </div>
       <div className="flex flex-wrap justify-center gap-5 max-w-5xl">
+        
         {projectsData.map((project: Project) => (
           <Link to={`/portfolio/${project.id}`} key={project.id} className="block">
             <div className=" rounded-lg w-70 ms:w-70 ">

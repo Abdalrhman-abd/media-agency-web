@@ -1,7 +1,7 @@
 import logo from '../../assets/images/logofooter.png';
 
-import icon1 from '../../assets/images/Group.png';
-import icon2 from '../../assets/images/Vector.png';
+import iconf1 from '../../assets/images/Group.png';
+import iconf2 from '../../assets/images/phonef.png';
 
 import location from '../../assets/images/location.png';
 import phone from '../../assets/images/phone.png';
@@ -11,16 +11,16 @@ import telegram from '../../assets/images/telegram.png';
 import instgram from '../../assets/images/instgram.png';
 import facebook from '../../assets/images/facebookpng.png';
 
-import asidefooter from '../../assets/images/logo.png';
+import half from '../../assets/images/half-icon.png';
 
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <>
-      <footer dir="rtl" className="w-full overflow-hidden">
-        <div className="relative flex flex-col lg:flex-row justify-around items-center gap-10 lg:gap-6 brand-gradient min-h-[575px] text-white px-5 sm:px-8 py-12 lg:py-8">
-          <div className="order-1 flex flex-col items-center shrink-0">
+      <footer  className="w-full overflow-hidden relative">
+        <div className="relative flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-6 brand-gradient min-h-[550px] text-white px-5 lg:p-0 sm:px-8 py-12 lg:py-8">
+          <div className="order-1 flex flex-col items-center shrink-0 lg:px-28">
             <img className="w-36 max-w-full object-contain" src={logo} />
             <p className="text-xs p-4 text-center">
               {' '}
@@ -33,7 +33,7 @@ const Footer = () => {
               <div className="w-full sm:w-auto">
                 <div className="flex items-center gap-4">
                   <div className="bg-brand-cream p-3 rounded-full shrink-0">
-                    <img className="w-5 h-5 object-contain" src={icon1} />
+                    <img className="w-5 h-5 object-contain" src={iconf1} />
                   </div>
 
                   <h1 className="mt-1 text-xl font-bold whitespace-nowrap">
@@ -77,7 +77,7 @@ const Footer = () => {
               <div className="w-full sm:w-auto">
                 <div className="flex items-center gap-4">
                   <div className="bg-brand-cream p-3 rounded-full shrink-0">
-                    <img className="w-5 h-5 object-contain" src={icon2} />
+                    <img className="w-5 h-5 object-contain" src={iconf2} />
                   </div>
                   <h1 className="mt-1 text-xl font-bold whitespace-nowrap">
                     {' '}
@@ -163,8 +163,8 @@ const Footer = () => {
 
           <div className="order-3 shrink-0">
             <img
-              className="w-28 sm:w-36 lg:w-40 max-w-full object-contain"
-              src={asidefooter}
+              className="   w-28 sm:w-36 lg:w-96 max-w-full object-contain  mt-14 "
+              src={half}
               alt=""
             />
           </div>

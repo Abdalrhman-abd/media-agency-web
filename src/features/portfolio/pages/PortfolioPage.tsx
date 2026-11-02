@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // 1. استيراد Link
+import { Link } from 'react-router-dom'; 
 import { projectsData } from '../data';
 import { Project } from '../types';
 import SectionTitle from '../../../components/ui/SectionTitle';
@@ -14,7 +14,6 @@ const PortfolioPage = () => {
       </div>
       <div className="flex flex-wrap justify-center gap-5 max-w-5xl">
         {projectsData.map((project: Project) => (
-          /* 2. تغليف الكرت بـ Link الموجه لصفحة تفاصيل المشروع بالـ id الخاص به */
           <Link to={`/portfolio/${project.id}`} key={project.id} className="block">
             <div className=" rounded-lg w-70 ms:w-70 ">
               <img src={project.image} alt={project.title} className="h-50 w-full object-cover rounded-[15px] mb-5" />

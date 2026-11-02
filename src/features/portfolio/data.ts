@@ -15,6 +15,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم دفتر",
   },
   {
     id: '2',
@@ -26,6 +27,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم اعلان",
   },
   {
     id: '3',
@@ -37,6 +39,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم كرت دعوة",
   },
   {
     id: '4',
@@ -48,6 +51,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم اعلان", 
   },
   {
     id: '5',
@@ -59,6 +63,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم كرت دعوة",
   },
   {
     id: '6',
@@ -70,6 +75,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم دفتر",
   },
   {
     id: '7',
@@ -81,6 +87,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم دفتر",
   },
   {
     id: '8',
@@ -92,6 +99,7 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم اعلان",
   },
   {
     id: '9',
@@ -103,5 +111,6 @@ export const projectsData: Project[] = [
     client: "Ahmad",
     year: "3",
     services: ["تصميم", "اعلان"],
+    description: "تصميم كرت دعوة",
   },
 ];

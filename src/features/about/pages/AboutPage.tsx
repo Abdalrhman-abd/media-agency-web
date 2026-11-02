@@ -4,12 +4,6 @@ import { statsData } from '../data';
 import officeimg from '../../../assets/images/officeimg.png';
 import SectionTitle from '../../../components/ui/SectionTitle';
 import TeamSection from '../components/TeamSection';
-import React from 'react'
-import SectionHero from '../../../components/ui/SectionHero';
-import StatCard from '../components/StatCard';
-import { statsData } from '../data';
-import officeimg from '../../../assets/images/officeimg.png'
-import SectionTitle from '../../../components/ui/SectionTitle';
 
 
 const AboutPage = () => {
@@ -45,6 +39,7 @@ const AboutPage = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
         <div className='flex justify-center items-center'>
           <SectionHero title='من نحن' subtitle='شريكك الإبداعي في عالم التصميم والطباعة والإعلانات' variant='stacked' buttonText='تعرف على أعمالنا' className="brand-gradient py-20" />
+        </div>
         </div>
       </section>
 

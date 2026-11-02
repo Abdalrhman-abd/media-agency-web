@@ -1,5 +1,3 @@
-// import React from 'react';
-import { Link } from 'react-router-dom'; // 1. استيراد Link
 import React from 'react';
 import { Link } from 'react-router-dom'; 
 import { projectsData } from '../data';

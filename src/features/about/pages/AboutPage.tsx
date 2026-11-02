@@ -1,7 +1,12 @@
-import React from 'react';
-
+import React from 'react'
+import TeamSection from '../components/TeamSection'
 const AboutPage = () => {
-  return <div>AboutPage</div>;
-};
+  return (
+    <>
+      <TeamSection/>
+    </>
+  )
+}
 
-export default AboutPage;
+export default AboutPage
+

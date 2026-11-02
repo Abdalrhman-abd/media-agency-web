@@ -16,6 +16,7 @@ export interface CardProps {
   buttonClassName?: string;
   className?: string;
   iconBg?: string;
+
 }
 
 const Card: React.FC<CardProps> = ({
@@ -29,7 +30,7 @@ const Card: React.FC<CardProps> = ({
   onButtonClick,
   buttonClassName,
   className = '',
-  iconBg = 'bg-purple-50',
+  iconBg = '',
 }) => {
   return (
     <div

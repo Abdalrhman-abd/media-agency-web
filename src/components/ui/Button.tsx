@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Button {
-  text: string;
+  text?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   id?: string;

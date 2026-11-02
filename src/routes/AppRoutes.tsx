@@ -7,6 +7,8 @@ import ServicesPage from '../features/services/pages/ServicesPage';
 import PortfolioPage from '../features/portfolio/pages/PortfolioPage';
 import ContactPage from '../features/contact/pages/ContactPage';
 import BookingPage from '../features/booking/pages/BookingPage';
+import NotFound from '../features/NotFound/NotFound';
+import ProjectDetailsPage from '../features/portfolio/ProjectDetailsPage.tsx'
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -15,9 +17,11 @@ export const AppRoutes: React.FC = () => {
         <Route index element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/PortfolioPage" element={<PortfolioPage />} />
+        <Route path="/portfolio/:projectId" element={<ProjectDetailsPage />} />
+        <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="/book-consultation" element={<BookingPage />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

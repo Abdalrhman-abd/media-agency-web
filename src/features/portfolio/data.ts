@@ -12,6 +12,9 @@ export const projectsData: Project[] = [
     category: 'creative',
     image: img1,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '2',
@@ -20,6 +23,9 @@ export const projectsData: Project[] = [
     category: 'ads',
     image: img2,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '3',
@@ -28,6 +34,9 @@ export const projectsData: Project[] = [
     category: 'print',
     image: img3,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '4',
@@ -36,6 +45,9 @@ export const projectsData: Project[] = [
     category: 'creative',
     image: img2,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '5',
@@ -44,6 +56,9 @@ export const projectsData: Project[] = [
     category: 'ads',
     image: img3,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '6',
@@ -52,6 +67,9 @@ export const projectsData: Project[] = [
     category: 'print',
     image: img1,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '7',
@@ -60,6 +78,9 @@ export const projectsData: Project[] = [
     category: 'creative',
     image: img1,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '8',
@@ -68,6 +89,9 @@ export const projectsData: Project[] = [
     category: 'ads',
     image: img2,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
   {
     id: '9',
@@ -76,5 +100,8 @@ export const projectsData: Project[] = [
     category: 'print',
     image: img3,
     icon: Vector,
+    client: "Ahmad",
+    year: "3",
+    services: ["تصميم", "اعلان"],
   },
 ];

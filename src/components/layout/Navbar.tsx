@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import Button from '../ui/Button.tsx';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../ui/LanguageSwitcher.tsx';
 import { navigationLinks } from '../layout/navigation.ts';
 interface ServiceOption {
   title: string;
@@ -18,7 +20,7 @@ const Navbar: React.FC = () => {
   const [scroll, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {

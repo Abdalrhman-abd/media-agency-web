@@ -23,7 +23,7 @@ const FeatureServices = () => {
             <Card icon={icon3} iconBg="bg-[#E8F4FF]" title=' الإعلانات' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center max-w-[300px]' />
           </div>
         </div>
-      </section>
+      </section>  
     </>
   )
 }

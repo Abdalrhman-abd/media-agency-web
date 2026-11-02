@@ -5,7 +5,7 @@ import SectionTitle from '../../../components/ui/SectionTitle';
 import Button from '../../../components/ui/Button';
 const SolutionsBanner = () => {
   return (
-    <div className="min-h-screen px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <div className="min-h-screen  p-5  lg:px-0 flex flex-col items-center">
       <div className="flex flex-col w-full max-w-7xl justify-center items-center">
         <div className="text-center mb-8 w-full flex justify-center">
           <SectionTitle
@@ -43,7 +43,7 @@ const SolutionsBanner = () => {
           </div>
         </div>
       </div>
-      <div className="flex-col md:flex-row  overflow-hidden mb-10 brand-gradient text-white min-h-[40vh]  rounded-4xl w-full max-w-7xl">
+      <div className="flex-col md:flex-row  overflow-hidden mb-10 brand-gradient text-white min-h-[40vh]  rounded-4xl w-full ">
         <div className="flex  items-center justify-between">
           <div className="flex flex-col  py-10 pr-5 md:py-20 md:pr-20 w-full max-w-3/4">
             <div className="flex gap-2">

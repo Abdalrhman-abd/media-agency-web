@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <>
-      <footer  className="w-full overflow-hidden relative">
+      <footer className="w-full overflow-hidden relative">
         <div className="relative flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-6 brand-gradient min-h-[550px] text-white px-5 lg:p-0 sm:px-8 py-12 lg:py-8">
           <div className="order-1 flex flex-col items-center shrink-0 lg:px-28">
             <img className="w-36 max-w-full object-contain" src={logo} />
@@ -170,7 +170,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    
+
     </>
 
   );

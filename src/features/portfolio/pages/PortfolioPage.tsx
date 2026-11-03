@@ -8,6 +8,7 @@ import { projectsData } from "../data";
 import type { PortfolioCategory, Project } from "./../types";
 import { useSearchParams } from 'react-router-dom';
 import PortfolioPagination from '../components/PortfolioPagination';
+import SectionHero from '../../../components/ui/SectionHero';
 const PortfolioPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,21 +37,29 @@ const PortfolioPage = () => {
   return (
     <>
 
-     <div className="mb-8 flex mt-40  max-w-2xl lg:mx-[20%]">
-          <PortfolioFilter
-            selectedCategory={selectedCategory}
-            onCategoryChange={(category) => {
-              setCurrentPage(1);
-              if (category === "all") {
-                setSearchParams({});
-              } else {
-                setSearchParams({ category });
-              }
-            }}
-          />
-        </div>
+      <div className="flex justify-center items-center">
+        <SectionHero
+          title=" معرض أعمالنا"
+          subtitle=" حيث يلتقي الابداع بالذتائج الملموسه"
+          variant="stacked"
+          className="brand-gradient py-20"
+        />
+      </div>
+      <div className="mb-8 flex mt-40  max-w-2xl lg:mx-[20%]">
+        <PortfolioFilter
+          selectedCategory={selectedCategory}
+          onCategoryChange={(category) => {
+            setCurrentPage(1);
+            if (category === "all") {
+              setSearchParams({});
+            } else {
+              setSearchParams({ category });
+            }
+          }}
+        />
+      </div>
       <div className="flex flex-col items-center py-10">
-       
+
         <div className=' mb-8 py-10 ml-0 sm:ml-180'>
           <SectionTitle title='معرض أعمالنا' />
         </div>

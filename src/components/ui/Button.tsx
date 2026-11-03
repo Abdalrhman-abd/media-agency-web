@@ -13,7 +13,7 @@ const Button: React.FC<Button> = ({
   onClick,
   type = 'button',
   id,
-  className = 'brand-gradient text-white',
+  className = 'brand-gradient hover:from-blue-700 hover:to-purple-800 text-white ',
 
 }) => {
   return (

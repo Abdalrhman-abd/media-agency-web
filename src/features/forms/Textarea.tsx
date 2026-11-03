@@ -44,10 +44,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           value={value}
           defaultValue={defaultValue}
           onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl border outline-none transition duration-200 bg-gray-50 text-gray-800 resize-none h-32 ${
+          className={`w-full px-4 py-3 rounded-xl border outline-none transition duration-200 text-gray-800 resize-none h-32 ${
             error
               ? 'border-red-400 focus:border-red-500 bg-red-50/30'
-              : 'border-gray-200 focus:border-blue-500 focus:bg-white'
+              : 'border-[#5d1b9a] focus:border-blue-500 focus:bg-white'
           }`}
           {...props}
         />

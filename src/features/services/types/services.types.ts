@@ -1,15 +1,17 @@
-export interface ServiceItem {
-  id: string;
+export interface ServiceCard {
+  id: number;
+  icon: string;
   title: string;
   description: string;
-  iconUrl: string;
   linkText: string;
-  targetUrl: string;
+  linkUrl: string;
+  iconBg?: string;
 }
 
-export interface ServiceGroup {
-  id: string;
-  sectionTitle: string;
-  sectionSubtitle: string;
-  services: ServiceItem[];
+export interface ServiceCategory {
+  id: number;
+  title: string;
+  subtitle: string;
+
+  services: ServiceCard[];
 }

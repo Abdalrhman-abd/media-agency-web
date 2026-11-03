@@ -77,4 +77,28 @@ export const projectsData: Project[] = [
     image: img3,
     icon: Vector,
   },
+  {
+  id: '10',
+  title: 'Global Ideaz',
+  subtitle: 'تصميم مشروع جديد',
+  category: 'creative',
+  image: img1,
+  icon: Vector,
+},
+{
+  id: '11',
+  title: 'Global Ideaz',
+  subtitle: 'تصميم مشروع جديد',
+  category: 'creative',
+  image: img1,
+  icon: Vector,
+},
+{
+  id: '12',
+  title: 'Global Ideaz',
+  subtitle: 'تصميم مشروع جديد',
+  category: 'creative',
+  image: img1,
+  icon: Vector,
+},
 ];

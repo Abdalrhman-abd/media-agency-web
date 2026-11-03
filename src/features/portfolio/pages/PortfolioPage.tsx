@@ -45,7 +45,7 @@ const PortfolioPage = () => {
           className="brand-gradient py-20"
         />
       </div>
-      <div className="mb-8 flex mt-40  max-w-2xl lg:mx-[20%]">
+      <div className="mb-8 flex mt-28  max-w-2xl lg:mx-[20%]">
         <PortfolioFilter
           selectedCategory={selectedCategory}
           onCategoryChange={(category) => {

@@ -6,7 +6,7 @@ const FeaturePortfolio = () => {
     <>
       <div className="  px-10 md:px-5 ">
         <div className='lg:ps-44 px-10 sm:px-32'>
-        <SectionTitle title='معرض اعمالنا' subtitle="نماذج من مشاريعنا التي تصنع فرقا"  />
+        <SectionTitle title='معرض أعمالنا' subtitle="نماذج من مشاريعنا التي تصنع فرقا"  />
        </div>
               <div className="flex flex-wrap justify-center gap-10  my-16">
                   {projectsData.slice(0, 6).map((project: Project) => (

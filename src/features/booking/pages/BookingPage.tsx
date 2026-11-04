@@ -145,6 +145,7 @@ export const BookingPage: React.FC = () => {
           <Button
             text="تأكيد الحجز"
             onClick={() => console.log('تم الضغط')}
+            className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
           />
         </div>
       </form>

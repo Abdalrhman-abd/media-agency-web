@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
 
   const isHome = location.pathname === "/";
 
-  const navLinkClass = `transition-all ${isHome ? "text-black" : "text-white"
+  const navLinkClass = `transition-all ${isHome ? "text-black" : "text-white hover:text-white"
     }`;
 
 
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
         <img
           src={logo}
           alt="logo"
-          className="w-10 sm:w-12 lg:w-13.75 shrink-0"
+          className={`w-10 sm:w-12 lg:w-13.75 shrink-0 ${isHome ? '' : 'brightness-0 invert'}`}
         />
         <nav className="hidden lg:flex">
           {navigationLinks.map((link) => {
@@ -67,7 +67,8 @@ const Navbar: React.FC = () => {
                 >
                   <button
                     onClick={() => navigate('/services')}
-                    className="flex items-center gap-1.5 p-3 px-7 text-xl transition-all hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                    className={`flex items-center gap-1.5 p-3 px-7 text-xl transition-all hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text ${isHome ? "" : "!text-white hover:!text-white hover:!bg-none"
+                      }`}
                   >
                     <span>{link.label}</span>
                     <svg
@@ -86,7 +87,7 @@ const Navbar: React.FC = () => {
                     </svg>
                   </button>
                   {isOpen && (
-                    <div className={`${navLinkClass} absolute top-full right-0 z-50 w-48 rounded-xl border border-gray-100 bg-white/95 py-4  shadow-xl backdrop-blur-md`}>
+                    <div className="absolute top-full right-0 z-50 w-48 rounded-xl border border-gray-100 bg-white/95 py-4 text-black shadow-xl backdrop-blur-md">
                       {servicesList.map((service, index) => (
                         <Link
                           key={index}

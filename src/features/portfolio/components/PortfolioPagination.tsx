@@ -16,21 +16,19 @@ const PortfolioPagination = ({
 
 }: PortfolioPaginationProps) => {
   if (totalPages <= 1) return null;
- return (
-    <div className="flex items-center justify-center gap-4">
+  return (
+    <div className="mt-16 flex items-center justify-center gap-4">
       {/* Previous Page */}
       <button
         type="button"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="disabled:opacity-40 disabled:cursor-not-allowed"
-        aria-label="Previous page"
+        className={`pb-2 flex justify-center items-center w-10 h-10 text-3xl rounded-full transition-all duration-300 ${currentPage === 1
+            ? 'brand-gradient text-white'
+            : 'bg-gray-200 text-gray-600'
+          }`}
       >
-        <img
-          src={Vector2}
-          alt=""
-          className="w-10"
-        />
+        ‹
       </button>
 
       {/* Current Page */}
@@ -43,14 +41,15 @@ const PortfolioPagination = ({
         type="button"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="disabled:opacity-40 disabled:cursor-not-allowed"
-        aria-label="Next page"
-      >
-        <img
-          src={icon9}
-          alt=""
-          className="w-11"
-        />
+        className={` pb-2 flex justify-center items-center w-10 h-10 text-3xl rounded-full transition-all duration-300 ${currentPage === totalPages
+            ? 'brand-gradient text-white'
+            : 'bg-gray-200 text-gray-600'
+          }`}>
+
+
+
+        ›
+
       </button>
     </div>
   );

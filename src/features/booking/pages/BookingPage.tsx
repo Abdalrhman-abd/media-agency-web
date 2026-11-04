@@ -172,7 +172,7 @@ export const BookingPage: React.FC = () => {
             {...register('description')}
             error={errors.description?.message}
           />
-        </div>
+        </form >
         <div className='text-left'>
           <Button
             text="تأكيد الحجز"
@@ -180,8 +180,8 @@ export const BookingPage: React.FC = () => {
             className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
           />
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 export default BookingPage;

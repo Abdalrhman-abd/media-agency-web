@@ -5,6 +5,8 @@ import { Project } from '../types';
 import SectionTitle from '../../../components/ui/SectionTitle';
 import Vector2 from '../../../assets/images/Vector2.png';
 import icon9 from '../../../assets/images/icon9.png';
+import SectionHero from '../../../components/ui/SectionHero';
+
 
 const PortfolioPage = () => {
   return (

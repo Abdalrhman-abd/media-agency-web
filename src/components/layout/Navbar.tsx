@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import Button from '../ui/Button.tsx';
 import { useState, useEffect } from 'react';
@@ -37,6 +37,14 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
+
+  const navLinkClass = `transition-all ${isHome ? "text-black" : "text-white hover:text-white"
+    }`;
+
+
   return (
     <>
       <header
@@ -45,7 +53,7 @@ const Navbar: React.FC = () => {
         <img
           src={logo}
           alt="logo"
-          className="w-10 sm:w-12 lg:w-13.75 shrink-0"
+          className={`w-10 sm:w-12 lg:w-13.75 shrink-0 ${isHome ? '' : 'brightness-0 invert'}`}
         />
         <nav className="hidden lg:flex">
           {navigationLinks.map((link) => {
@@ -59,13 +67,13 @@ const Navbar: React.FC = () => {
                 >
                   <button
                     onClick={() => navigate('/services')}
-                    className="flex items-center gap-1.5 p-3 px-7 text-xl transition-all hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                    className={`flex items-center gap-1.5 p-3 px-7 text-xl transition-all hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text ${isHome ? "" : "!text-white hover:!text-white hover:!bg-none"
+                      }`}
                   >
                     <span>{link.label}</span>
                     <svg
-                      className={`h-4 w-4 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
+                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -79,7 +87,7 @@ const Navbar: React.FC = () => {
                     </svg>
                   </button>
                   {isOpen && (
-                    <div className="absolute top-full right-0 z-50 w-48 rounded-xl border border-gray-100 bg-white/95 py-4 text-gray-800 shadow-xl backdrop-blur-md">
+                    <div className="absolute top-full right-0 z-50 w-48 rounded-xl border border-gray-100 bg-white/95 py-4 text-black shadow-xl backdrop-blur-md">
                       {servicesList.map((service, index) => (
                         <Link
                           key={index}
@@ -100,7 +108,7 @@ const Navbar: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="inline-block p-3 px-7 text-xl hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                className={`${navLinkClass} inline-block p-3 px-7 text-xl hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text`}
               >
                 {link.label}
               </Link>

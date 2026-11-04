@@ -15,6 +15,7 @@ const ProjectDetailsPage = () => {
         .slice(0, 3);
 
     return (
+       
         <div className="py-20 flex flex-col">
             <div className='flex flex-col lg:flex-row items-center justify-center px-6 lg:px-20 gap-10'>
                 <img src={project.image} alt={project.title} className="w-full lg:w-1/2 object-cover rounded-2xl shadow-md" />

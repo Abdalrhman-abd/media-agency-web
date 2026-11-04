@@ -152,9 +152,36 @@ export const BookingPage: React.FC = () => {
               onClick={() => console.log('تم الضغط')}
             />
           </div>
-        </form>
-      </div>
-    </>
+
+          <Controller
+            name="meetingType"
+            control={control}
+            render={({ field }) => (
+              <MeetingTypeRadio
+                value={field.value}
+                onChange={field.onChange}
+                error={errors.meetingType?.message}
+              />
+            )}
+          />
+
+          <Textarea
+            label="وصف المشروع "
+            required
+            maxLength={100}
+            {...register('description')}
+            error={errors.description?.message}
+          />
+        </div>
+        <div className='text-left'>
+          <Button
+            text="تأكيد الحجز"
+            onClick={() => console.log('تم الضغط')}
+            className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 export default BookingPage;

@@ -113,4 +113,28 @@ export const projectsData: Project[] = [
     services: ["تصميم", "اعلان"],
     description: "تصميم كرت دعوة",
   },
+  {
+  id: '10',
+  title: 'Global Ideaz',
+  subtitle: 'تصميم مشروع جديد',
+  category: 'creative',
+  image: img1,
+  icon: Vector,
+},
+{
+  id: '11',
+  title: 'Global Ideaz',
+  subtitle: 'تصميم مشروع جديد',
+  category: 'creative',
+  image: img1,
+  icon: Vector,
+},
+{
+  id: '12',
+  title: 'Global Ideaz',
+  subtitle: 'تصميم مشروع جديد',
+  category: 'creative',
+  image: img1,
+  icon: Vector,
+},
 ];

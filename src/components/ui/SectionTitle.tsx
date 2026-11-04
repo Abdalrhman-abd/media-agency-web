@@ -13,7 +13,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   subtitle,
   align = 'left',
   variant = 'inline',
-  calssName ='',
+  calssName = '',
 }) => {
   const alignmentClasses = {
     left: 'items-start text-start',
@@ -24,12 +24,12 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   return (
     <div className={`flex w-full flex-col gap-3 ${alignmentClasses[align]} ${calssName}`} >
       <div className={`flex ${variant === 'stacked' ? 'flex-col' : 'flex-row items-center gap-3 '}`}>
-        <div aria-hidden="true" className="h-1 w-11 shrink-0 rounded bg-brand-yellow mt-2"/>
+        <div aria-hidden="true" className="h-1 w-11 shrink-0 rounded bg-brand-yellow mt-2" />
 
         <h2 className="m-0 text-3xl font-extrabold ">{title}</h2>
       </div>
 
-      {subtitle && <p className= " m-0 font-semil  text-text-muted">{subtitle}</p>}
+      {subtitle && <p className=" m-0 font-semil  text-text-muted">{subtitle}</p>}
     </div>
   );
 };

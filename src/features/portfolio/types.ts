@@ -1,6 +1,8 @@
-// src/features/portfolio/types.ts
 
 export type ProjectCategory = 'creative' | 'ads' | 'print';
+
+export type PortfolioCategory = 'all' | ProjectCategory;
+
 
 export interface Project {
   id: string;

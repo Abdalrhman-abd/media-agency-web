@@ -4,8 +4,10 @@ import { AppRoutes } from './routes/AppRoutes'
 const App = () => {
   return (
     <>
+   
     <LanguageDirection/>
       <AppRoutes />
+
     </>
   )
 }

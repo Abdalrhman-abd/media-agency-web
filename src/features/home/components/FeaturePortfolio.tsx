@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {projectsData } from "../../../../src/features/portfolio/data"
 import SectionTitle from '../../../components/ui/SectionTitle';
 const FeaturePortfolio = () => {
@@ -6,11 +6,11 @@ const FeaturePortfolio = () => {
     <>
       <div className="  px-10 md:px-5 ">
         <div className='lg:ps-44 px-10 sm:px-32'>
-        <SectionTitle title='معرض اعمالنا' subtitle="نماذج من مشاريعنا التي تصنع فرقا"  />
+        <SectionTitle title='معرض أعمالنا' subtitle="نماذج من مشاريعنا التي تصنع فرقا"  />
        </div>
-              <div className="flex flex-wrap justify-center gap-10  my-16">
+              <div className="flex flex-wrap justify-center gap-10  mt-16 mb-5">
                   {projectsData.slice(0, 6).map((project: Project) => (
-                    <div key={project.id} className=" rounded-lg w-70 lg:w-[350px] lg:h-96 ">
+                    <div key={project.id} className=" rounded-lg  w-70 lg:w-70 xl:w-[350px] lg:h-96 ">
                       <img loading="lazy" src={project.image} alt={project.title} className="h-[280px] w-full object-cover rounded-[15px] mb-5 " />
                       <div className="flex items-center justify-between">
                         <div className=''>

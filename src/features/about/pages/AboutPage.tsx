@@ -5,7 +5,6 @@ import officeimg from '../../../assets/images/officeimg.png';
 import SectionTitle from '../../../components/ui/SectionTitle';
 import TeamSection from '../components/TeamSection';
 
-
 const AboutPage = () => {
   return (
     <>
@@ -20,22 +19,20 @@ const AboutPage = () => {
           />
         </div>
       </section>
-
-      <section className="">
-        <div className="flex w-full flex-row justify-between items-center">
-          <div className="w-full mr-35 ">
-            <SectionTitle
-              calssName="text-2xl mt-30 leading-11"
-              title="قصتنا"
-              subtitle="بدأت رحلتنا بفكرة بسيطة... أن نقدم حلولاً إبداعية متكاملة في عالم التصميم والمطبوعات والإعلانات. ومنذ ذلك الحين نحن نعمل بشغف لنكون الخيار الأول لعملائنا في حلب وما حولها، من خلال فريق محترف وتقنيات حديثة وخبرة متنامية في السوق."
-            />
-          </div>
-          <div className="w-500">
-            <img src={officeimg} alt="image" className="w-400" />
-          </div>
+      <section className="flex flex-col md:flex-row w-full justify-between items-start md:items-center overflow-hidden">
+        <div className="w-full md:w-7/12 px-10 md:px-35 py-6 md:py-0">
+          <SectionTitle
+            calssName="leading-relaxed [&_h2]:text-4xl [&_h2]:sm:text-5xl [&_p]:text-base [&_p]:sm:text-lg [&_p]:md:text-xl"
+            title="قصتنا"
+            subtitle="بدأت رحلتنا بفكرة بسيطة... أن نقدم حلولاً إبداعية متكاملة في عالم التصميم والمطبوعات والإعلانات. ومنذ ذلك الحين نحن نعمل بشغف لنكون الخيار الأول لعملائنا في حلب وما حولها، من خلال فريق محترف وتقنيات حديثة وخبرة متنامية في السوق."
+          />
+        </div>
+        <div className="w-4/5 sm:w-3/4 md:w-5/12 mr-auto ml-0 p-0">
+          <img src={officeimg} alt="image" className="w-full h-full object-cover block" />
         </div>
       </section>
-      <section className='pb-20 px-10 md:px-35 mt-40'>
+
+      <section className='pb-20 px-10 md:px-35 mt-20'>
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-2'>
           {statsData.map((stat) => (
             <StatCard key={stat.id} stat={stat} />
@@ -47,4 +44,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage
+export default AboutPage;

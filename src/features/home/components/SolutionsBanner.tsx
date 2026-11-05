@@ -15,6 +15,7 @@ const SolutionsBanner = () => {
             الفراد"
             variant="inline"
             align="left"
+            calssName=''
           />
         </div>
 
@@ -43,7 +44,7 @@ const SolutionsBanner = () => {
           </div>
         </div>
       </div>
-      <div className="flex-col md:flex-row  overflow-hidden mb-10 brand-gradient text-white min-h-[35vh]  rounded-4xl w-full ">
+      <div className="flex-col md:flex-row  overflow-hidden mb-10 mt-15 brand-gradient text-white min-h-[40vh]  rounded-4xl w-full ">
         <div className="flex  items-center justify-between">
           <div className="flex flex-col  py-10 pr-5 md:py-20 md:pr-20 w-full max-w-3/4">
             <div className="flex gap-2">

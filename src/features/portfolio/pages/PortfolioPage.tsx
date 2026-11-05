@@ -6,9 +6,10 @@ import PortfolioFilter from '../components/portfolioFilter';
 import { useMemo, useState } from "react";
 import { projectsData } from "../data";
 import type { PortfolioCategory, Project } from "./../types";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import PortfolioPagination from '../components/PortfolioPagination';
 import SectionHero from '../../../components/ui/SectionHero';
+
 const PortfolioPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,7 +37,6 @@ const PortfolioPage = () => {
 
   return (
     <>
-
       <div className="flex justify-center items-center">
         <SectionHero
           title=" معرض أعمالنا"
@@ -64,24 +64,28 @@ const PortfolioPage = () => {
           <SectionTitle title='معرض أعمالنا' />
         </div>
 
-
-
         <div className="flex flex-wrap justify-center gap-5 max-w-5xl">
           {visibleProjects.map((project: Project) => (
-            <div key={project.id} className=" rounded-lg w-70 ms:w-70 ">
-              <img src={project.image} alt={project.title} className="h-50 w-full object-cover rounded-[15px] mb-5" />
+            // تم تغليف بطاقة المشروع بـ Link للانتقال لصفحة التفاصيل
+            <Link
+              key={project.id}
+              to={`/portfolio/${project.id}`}
+              className="rounded-lg w-70 ms:w-70 group cursor-pointer block"
+            >
+              <img src={project.image} alt={project.title} className="h-50 w-full object-cover rounded-[15px] mb-5 transition-transform duration-300 group-hover:scale-105" />
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-xl mb-2">{project.title}</h3>
+                  <h3 className="font-semibold text-xl mb-2 transition-colors">{project.title}</h3>
                   <p className="text-[13px] text-gray-500 mb-5">{project.subtitle}</p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-800 to-purple-900 hover:from-blue-700 hover:to-purple-800 text-white w-8 h-8 rounded-full flex items-center justify-center p-3 flex-shrink-0 ml-5">
                   <img src={project.icon} alt="icon" className="w-full h-full object-contain" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
+
         {filteredProjects.length > 0 && (
           <PortfolioPagination
             currentPage={currentPage}

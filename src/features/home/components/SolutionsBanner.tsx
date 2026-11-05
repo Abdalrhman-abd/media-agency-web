@@ -5,16 +5,16 @@ import SectionTitle from '../../../components/ui/SectionTitle';
 import Button from '../../../components/ui/Button';
 const SolutionsBanner = () => {
   return (
-    <div className="min-h-screen  p-5  lg:px-0 flex flex-col items-center">
+    <div className="min-h-screen p-5 lg:px-0 flex flex-col items-center">
       <div className="flex flex-col w-full max-w-7xl justify-center items-center">
-        <div className="text-center mb-8 w-full flex justify-center">
+        <div className="text-center mb-8 w-full flex justify-center mr-30">
           <SectionTitle
             title="كيف يمكننا مساعدتك ؟"
             subtitle=" لدينا حلول متكامله مخصصه خصيصا لتلبيه تطلعات قطاع الاعمال ومشاريع
-            الفراد
-"
+            الفراد"
             variant="inline"
-            align="center"
+            align="left"
+            calssName=''
           />
         </div>
 
@@ -30,7 +30,7 @@ const SolutionsBanner = () => {
             <Button text="احجز استشارتك المجانية" className="bg-gradient-to-r from-blue-800 to-purple-900 hover:from-blue-700 hover:to-purple-800 text-white w-[180px] h-[45px]"
             onClick={() => console.log('تم الضغط')}/>
           </div>
-          <div className="  text-center border-3 border-transparent [background:linear-gradient(white,white)_padding-box,linear-gradient(to_bottom_right,#0F4C81,#6A1B9A)_border-box] max-w-xl px-10 py-6 rounded-3xl w-full">
+          <div className="  text-center border-3 border-transparent [background:linear-gradient(white,white)_padding-box,linear-gradient(to_bottom_right,#0F4C81,#6A1B9A)_border-box] max-w-xl px-10  py-6 rounded-3xl w-full">
             <h2 className="text-2xl font-semibold ">
               خدمات إبداعية للأفراد /B2C/
             </h2>
@@ -43,7 +43,7 @@ const SolutionsBanner = () => {
           </div>
         </div>
       </div>
-      <div className="flex-col md:flex-row  overflow-hidden mb-10 brand-gradient text-white min-h-[40vh]  rounded-4xl w-full ">
+      <div className="flex-col md:flex-row  overflow-hidden mb-10 mt-15 brand-gradient text-white min-h-[40vh]  rounded-4xl w-full ">
         <div className="flex  items-center justify-between">
           <div className="flex flex-col  py-10 pr-5 md:py-20 md:pr-20 w-full max-w-3/4">
             <div className="flex gap-2">

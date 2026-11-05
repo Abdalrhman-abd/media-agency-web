@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import { useNavigate } from 'react-router-dom';
 
 export interface SectionHeroProps {
     title: string;
@@ -20,6 +21,7 @@ const SectionHero: React.FC<SectionHeroProps> = ({
     onButtonClick,
     className = '',
 }) => {
+    const navigate = useNavigate();
     const alignmentClasses = {
         left: 'items-start text-start',
         center: 'items-center text-center',
@@ -27,7 +29,6 @@ const SectionHero: React.FC<SectionHeroProps> = ({
     };
 
     return (
-        /* أزلنا brand-gradient من هنا لتكون العبارة عامة، ونحن نتحكم بالخلفية من الخارج */
         <div className={`w-full ${className}`}>
             <div className={`flex w-full flex-col gap-3 px-35 ${alignmentClasses[align]}`}>
                 <div className=''>
@@ -42,7 +43,7 @@ const SectionHero: React.FC<SectionHeroProps> = ({
                             <Button
                                 text={buttonText}
                                 className="bg-transparent text-white hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:text-white border-1 rounded-xl "
-                                onClick={onButtonClick || (() => console.log('تم الضغط'))}
+                                onClick={onButtonClick || (() => navigate('/portfolio'))}
                             />
                         </div>
                     )}

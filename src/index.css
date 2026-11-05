@@ -1,20 +1,23 @@
- @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
- @import "tailwindcss";
-:root{
-    --main:#6A1B9A;
-    --white:#fff;
-    --mainhover:#983ad2fc;
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+:root {
+  --main: #6a1b9a;
+  --white: #fff;
+  --mainhover: #983ad2fc;
 }
-*{
-    transition: all .3s;
+* {
+  transition: all 0.3s;
+
+  font-family: 'Cairo', sans-serif;
 }
+
 @import 'tailwindcss';
 @theme {
   --color-brand-blue: #0f4c81;
   --color-brand-purple: #6a1b9a;
   --color-brand-yellow: #f4b400;
   --color-brand-deep-purple: #4a2d8f;
-  --color-brand-cream: #FFF6DB;
+  --color-brand-cream: #fff6db;
 
   --color-text-primary: #333333;
   --color-text-secondary: #888888;

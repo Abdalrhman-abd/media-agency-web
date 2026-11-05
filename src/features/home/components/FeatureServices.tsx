@@ -7,24 +7,26 @@ import SectionTitle from '../../../components/ui/SectionTitle.tsx'
 
 const FeatureServices = () => {
   return (
-    <>
-      <section className='flex flex-col items-center justify-center py-12 px-4'>
-        <div className='text-center mb-8'>
-          <SectionTitle align="center" title='خدماتنا' subtitle='حلول متكاملة لنجاح مشروعك حتى إلى جمهورك المستهدف بفعالية تامة.'/>
-        </div>
-        <div className='flex flex-col md:flex-row justify-center items-center gap-6'>
-          <div className='flex justify-center items-center p-5'>
-            <Card icon={icon1} iconBg="bg-[#F6E6FF]" title='التصميم الإبداعي' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center max-w-[300px] ' />
+    <div className=' min-h-[90vh] flex items-center justify-center '>
+      <div className='w-full'>
+        <section className='flex flex-col items-center justify-center py-10 px-4'>
+          <div className='text-center mb-8'>
+            <SectionTitle align="center" title='خدماتنا' subtitle='حلول متكاملة لنجاح مشروعك حتى إلى جمهورك المستهدف بفعالية تامة.' />
           </div>
-          <div className='flex justify-center items-center p-5'>
-            <Card icon={icon2} iconBg="bg-[#FFF6DB]" title=' المطبوعات' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center max-w-[300px] bg-[#FFF6DB]' />
+          <div className='flex flex-col md:flex-row justify-center items-center gap-10 flex-wrap'>
+            <div className='flex justify-center items-center '>
+              <Card icon={icon1} iconBg="bg-[#F6E6FF]" title='التصميم الإبداعي' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center w-70 lg:w-70 xl:w-[350px]  h-[280px] lg:h-80 ' />
+            </div>
+            <div className='flex justify-center items-center '>
+              <Card icon={icon2} iconBg="bg-[#FFF6DB]" title=' المطبوعات' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center w-70 lg:w-70 xl:w-[350px] bg-[#FFF6DB]  h-[280px] lg:h-80' />
+            </div>
+            <div className='flex justify-center items-center '>
+              <Card icon={icon3} iconBg="bg-[#E8F4FF]" title=' الإعلانات' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center w-70 lg:w-70 xl:w-[350px]   h-[280px] lg:h-80' />
+            </div>
           </div>
-          <div className='flex justify-center items-center p-5'>
-            <Card icon={icon3} iconBg="bg-[#E8F4FF]" title=' الإعلانات' description='هوية بصرية، تصاميم رقمية وتصاميم مطبوعة مميزة' linkUrl='اكتشف المزيد' linkText='اكتشف المزيد ' className='flex justify-center items-center max-w-[300px]' />
-          </div>
-        </div>
-      </section>  
-    </>
+        </section>
+      </div>
+    </div>
   )
 }
 

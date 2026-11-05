@@ -1,8 +1,9 @@
 import React from 'react';
 import HeroSectionImage from '../../../assets/images/HeroSectionImage.png';
 import Button from '../../../components/ui/Button';
-
+import { useNavigate } from 'react-router-dom';
 const HeroSection = () => {
+   const navigate = useNavigate();
   return (
     <section
       className="w-full min-h-[650px] md:min-h-[800px] lg:min-h-[940px] bg-no-repeat bg-cover bg-center"
@@ -34,13 +35,13 @@ const HeroSection = () => {
         <div className="flex flex-wrap items-center gap-3 py-4 sm:gap-4">
           <Button
             text="ابدأ مشروعك الآن"
-            onClick={() => console.log('تم الضغط')}
+            onClick={() => navigate('/book-consultation')}
           />
 
           <Button
             text="تعرف علينا أكثر"
             className="bg-transparent text-[#6A1B9A] hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:text-white border-1 rounded-xl"
-            onClick={() => console.log('تم الضغط')}
+            onClick={() => navigate('/book-consultation')}
           />
         </div>
       </div>

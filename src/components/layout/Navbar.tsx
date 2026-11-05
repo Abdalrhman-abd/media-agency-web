@@ -11,9 +11,9 @@ interface ServiceOption {
 }
 
 const servicesList: ServiceOption[] = [
-  { title: 'التصميم الإبداعي', path: '' },
-  { title: 'المطبوعات', path: '' },
-  { title: 'الإعلانات', path: '' },
+  { title: 'التصميم الإبداعي', path: '/services' },
+  { title: 'المطبوعات', path: '/services' },
+  { title: 'الإعلانات', path: '/services' },
 ];
 
 const Navbar: React.FC = () => {
@@ -48,14 +48,14 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`flex w-full fixed z-50 justify-between items-center px-4 sm:px-8 md:px-16 lg:px-32 py-4 sm:py-6 lg:p-9 ${scroll ? 'bg-[#D9D9D980] shadow-lg py-2 lg:py-2' : 'bg-transparent'}`}
+        className={`flex w-full fixed z-50 justify-between items-center px-4 sm:px-8 md:px-16 lg:px-32 py-4 sm:py-6 lg:p-9 ${scroll ? 'bg-[#a09b9b80] shadow-lg py-2 lg:py-2 ' : 'bg-transparent'}`}
       >
         <img
           src={logo}
           alt="logo"
           className={`w-10 sm:w-12 lg:w-13.75 shrink-0 ${isHome ? '' : 'brightness-0 invert'}`}
         />
-        <nav className="hidden lg:flex">
+        <nav className="hidden lg:flex ">
           {navigationLinks.map((link) => {
             if (link.path === '/services') {
               return (
@@ -92,6 +92,8 @@ const Navbar: React.FC = () => {
                         <Link
                           key={index}
                           to={service.path}
+                          
+                          
                           onClick={() => setIsOpen(false)}
                           className="block px-4 py-2.5 text-sm hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
                         >
@@ -120,7 +122,7 @@ const Navbar: React.FC = () => {
         </div>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-2xl shrink-0"
+          className={`lg:hidden text-2xl shrink-0 ${isHome ? 'text-black' : 'text-white'}`}
           aria-label="فتح القائمة"
         >
           {isOpen ? '✕' : '☰'}
@@ -165,7 +167,7 @@ const Navbar: React.FC = () => {
             <Link
               key={index}
               to={service.path}
-              onClick={() => setIsOpen(false)}
+              onClick={() => { setIsOpen(false) }}
               className="pr-7 py-2 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
             >
               {service.title}
@@ -188,7 +190,8 @@ const Navbar: React.FC = () => {
           <div className="mt-2">
             <Button
               text="احجز استشارة"
-              onClick={() => console.log('تم الضغط')}
+              className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
+              onClick={() => navigate('/book-consultation')}
             />
           </div>
         </nav>

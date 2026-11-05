@@ -34,9 +34,9 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div
-      className={`bg-[#e8e8e84e] rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between items-center text-center border border-gray-100 ${className}`}
+      className={`bg-[#e8e8e84e]  rounded-2xl  p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between items-center text-center border border-gray-100 ${className}`}
     >
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center  ">
         {/* الصورة إن وجدت */}
         {image && (
           <div className="w-full h-48 overflow-hidden rounded-xl mb-4">

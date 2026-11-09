@@ -6,16 +6,6 @@ export interface StatItem {
   avatars?: string[];
 }
 
-// export interface TeamMember {
-//   id: string;
-//   name: string;
-//   role: string;
-//   avatarUrl: string;
-//   isLeader?: boolean;
-//   bio?: string;
-// }
-
-
 
 export type TeamLead = {
   name: string;

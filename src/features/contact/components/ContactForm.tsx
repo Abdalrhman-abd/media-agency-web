@@ -6,7 +6,6 @@ import { contactSchema, ContactFormData } from '../types/contact.types'
 import { Input } from '../../forms/Input'
 import { Textarea } from '../../forms/Textarea'
 import Button from '../../../components/ui/Button'
-import SectionTitle from '../../../components/ui/SectionTitle'
 import BookingImage from "../../../assets/images/BookingImage.png"
 const ContactForm: React.FC = () => {
 

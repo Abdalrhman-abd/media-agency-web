@@ -1,7 +1,6 @@
 import React from 'react';
 import SectionTitle from '../../../components/ui/SectionTitle';
-import Vector2 from '../../../assets/images/Vector2.png'
-import icon9 from '../../../assets/images/icon9.png'
+import sort  from "../../../assets/images/sort.png"
 import PortfolioFilter from '../components/portfolioFilter';
 import { useMemo, useState } from "react";
 import { projectsData } from "../data";
@@ -40,12 +39,12 @@ const PortfolioPage = () => {
       <div className="flex justify-center items-center">
         <SectionHero
           title=" معرض أعمالنا"
-          subtitle=" حيث يلتقي الابداع بالذتائج الملموسه"
+          subtitle=" حيث يلتقي الابداع بالنتائج الملموسه"
           variant="stacked"
           className="brand-gradient py-20"
         />
       </div>
-      <div className="mb-8 flex mt-28  max-w-2xl lg:mx-[20%]">
+      <div className="mb-8 flex  gap-5 justify-between items-center mt-28 flex-wrap   lg:mx-[14%]  mx-5">
         <PortfolioFilter
           selectedCategory={selectedCategory}
           onCategoryChange={(category) => {
@@ -57,22 +56,27 @@ const PortfolioPage = () => {
             }
           }}
         />
-      </div>
-      <div className="flex flex-col items-center py-10">
-
-        <div className=' mb-8 py-10 ml-0 sm:ml-180'>
-          <SectionTitle title='معرض أعمالنا' />
+        <div>
+          <img src={sort} alt=""  width={40}/>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-5 max-w-5xl">
+      </div>
+      <div className="flex flex-col   py-10">
+
+        <div className=' mb-8 py-10 lg:pr-52 md:pr-36 pr-10 '>
+          <SectionTitle title='معرض أعمالنا'  align='left' calssName=''/>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-5 max-w-7xl m-auto ">
           {visibleProjects.map((project: Project) => (
             // تم تغليف بطاقة المشروع بـ Link للانتقال لصفحة التفاصيل
             <Link
               key={project.id}
               to={`/portfolio/${project.id}`}
-              className="rounded-lg w-70 ms:w-70 group cursor-pointer block"
+              className="rounded-lg w-70 lg:w-70  xl:w-[350px] lg:h-96 group cursor-pointer block"
+               
             >
-              <img src={project.image} alt={project.title} className="h-50 w-full object-cover rounded-[15px] mb-5 transition-transform duration-300 group-hover:scale-105" />
+              <img src={project.image} alt={project.title} className="w-70 lg:w-70 xl:w-[350px]  h-[280px] w-full object-cover rounded-[15px] mb-5 transition-transform duration-300 group-hover:scale-105" />
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-semibold text-xl mb-2 transition-colors">{project.title}</h3>

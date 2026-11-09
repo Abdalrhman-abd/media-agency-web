@@ -17,7 +17,7 @@ const ServicesPage = () => {
         <div className="flex justify-center items-center">
           <SectionHero
             title=" خدماتنا"
-            subtitle="ثلاثه مسارات متكامله التصميم الاعلانات والامطبوعات تجارب ابداعيه مخصصه تساعدك على تمييز والظهور"
+            subtitle="ثلاثه مسارات متكامله التصميم الاعلانات والامطبوعات  تجارب ابداعيه مخصصه تساعدك على تمييز والظهور"
             variant="stacked"
             className="brand-gradient py-20"
           />

@@ -37,7 +37,7 @@ const SectionHero: React.FC<SectionHeroProps> = ({
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mt-2">{title}</h2>
                     </div>
 
-                    {subtitle && <p className="m-0 font-medium text-white text-base sm:text-lg mt-10">{subtitle}</p>}
+                    {subtitle && <p className="m-0 font-medium text-white text-base sm:text-lg mt-10 max-w-md">{subtitle}</p>}
                     {buttonText && (
                         <div className='p-2 mt-4'>
                             <Button

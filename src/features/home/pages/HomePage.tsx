@@ -5,6 +5,7 @@ import SolutionsBanner from './../components/SolutionsBanner';
 import FeaturePortfolio from '../components/FeaturePortfolio';
 import TestimonialsSlider from '../components/testimonials/copmmponents/TestimonialsSlider';
 import { motion, useReducedMotion } from 'motion/react';
+import { Reveal } from '../../../components/ui/Reveal'; // عدل المسار حسب مكان ملف Reveal لديك
 
 const HomePage = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -31,6 +32,25 @@ const HomePage = () => {
         <SolutionsBanner />
         <TestimonialsSlider />
       </motion.div>
+      <Reveal direction="up" delay={0.1}>
+        <HeroSection />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
+        <FeatureServices />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
+        <FeaturePortfolio />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
+        <SolutionsBanner />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
+        <TestimonialsSlider />
+      </Reveal>
     </>
   );
 };

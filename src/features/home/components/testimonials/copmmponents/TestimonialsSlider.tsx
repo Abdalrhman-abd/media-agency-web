@@ -5,9 +5,9 @@ import { testimonials } from './../data';
 import SectionTitle from '../../../../../components/ui/SectionTitle';
 
 import Card from './Card';
-
+import { motion, AnimatePresence } from 'motion/react';
 const TestimonialsSlider = () => {
-  const [activeButton, setActiveButton] = useState<'prev' | 'next' > ('prev');
+  const [activeButton, setActiveButton] = useState<'prev' | 'next'>('prev');
   const [activeIndex, setActiveIndex] = useState(0);
   const maxIndex = Math.max(0, testimonials.length - 3);
 
@@ -77,11 +77,20 @@ const TestimonialsSlider = () => {
       </div>
 
       {/* Testimonials Cards */}
-      <div className="flex justify-center items-center gap-10 flex-wrap my-10">
-        {visibleTestimonials.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
-      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="flex justify-center items-center gap-10 flex-wrap my-10"
+        >
+          {visibleTestimonials.map((item) => (
+            <Card key={item.id} item={item} />
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Pagination Dots */}
       <div className="flex justify-center items-center gap-2 pb-10">

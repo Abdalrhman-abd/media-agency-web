@@ -1,5 +1,6 @@
 import logo from '../../assets/images/logofooter.png';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
 import iconf1 from '../../assets/images/Group.png';
 import iconf2 from '../../assets/images/phonef.png';
 
@@ -7,9 +8,6 @@ import location from '../../assets/images/location.png';
 import phone from '../../assets/images/phone.png';
 import meeseg from '../../assets/images/meeseg.png';
 
-import telegram from '../../assets/images/telegram.png';
-import instgram from '../../assets/images/instgram.png';
-import facebook from '../../assets/images/facebookpng.png';
 
 import half from '../../assets/images/half-icon.png';
 
@@ -52,21 +50,21 @@ const Footer = () => {
                   </Link>
                   <Link
                     className="p-2 pr-10 inline-block hover:text-yellow-300 transition-colors"
-                    to="/من-نحن"
+                    to="/about"
                   >
                     {' '}
                     من نحن{' '}
                   </Link>
                   <Link
                     className="p-2 pr-10 inline-block hover:text-yellow-300 transition-colors"
-                    to="/الخدمات"
+                    to="/services"
                   >
                     {' '}
                     الخدمات{' '}
                   </Link>
                   <Link
                     className="p-2 pr-10 inline-block hover:text-yellow-300 transition-colors"
-                    to="/معرض-الأعمال"
+                    to="/PortfolioPage"
                   >
                     {' '}
                     معرض الأعمال{' '}
@@ -135,21 +133,16 @@ const Footer = () => {
               <div className="flex flex-col items-start">
                 <p className="py-2">تابعنا</p>
                 <div className="flex items-center justify-center gap-4 mt-2">
-                  <img
-                    className="w-6 h-6 object-contain"
-                    src={telegram}
-                    alt="Telegram"
-                  />
-                  <img
-                    className="w-6 h-6 object-contain"
-                    src={instgram}
-                    alt="Instagram"
-                  />
-                  <img
-                    className="w-6 h-6 object-contain"
-                    src={facebook}
-                    alt="Facebook"
-                  />
+                  <a href="">
+                    <FontAwesomeIcon icon={faTelegram} className='text-2xl object-contain'/>
+                  </a>
+                  <a href="">
+                    <FontAwesomeIcon icon={faInstagram} className='text-2xl object-contain'/>
+                  </a>
+                  <a href="">
+                    <FontAwesomeIcon icon={faFacebook} className='text-2xl object-contain' />
+                  </a>
+
                 </div>
               </div>
             </div>
@@ -161,7 +154,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="order-3 shrink-0">
+          <div className="order-3">
             <img
               className="   w-28 sm:w-36 lg:w-96 max-w-full object-contain  mt-14 "
               src={half}

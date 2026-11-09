@@ -20,7 +20,8 @@ const TeamLeadCard: React.FC<TeamLeadCardProps> = ({ lead }) => {
         <img
           className="lg:w-96 md:w-60  w-56  object-cover "
           src={lead.photo}
-          alt=""
+          alt="img"
+          loading="lazy"
         />
       </div>
     </>

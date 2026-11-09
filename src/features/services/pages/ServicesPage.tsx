@@ -3,6 +3,7 @@ import { servicesData } from '../types/data'
 import SectionHero from '../../../components/ui/SectionHero'
 import SectionTitle from '../../../components/ui/SectionTitle'
 import Card from '../../../components/ui/Card'
+import { Reveal } from '../../../components/ui/Reveal'
 
 const ServicesPage = () => {
     const sortedServices = [...servicesData].sort((a, b) => {
@@ -27,25 +28,29 @@ const ServicesPage = () => {
         {sortedServices.map((category) => (
           <section key={category.id} className="py-12">
 
-            <SectionTitle
-              title={category.title}
-              subtitle={category.subtitle}
-              align="center"
-              variant="inline"
-            />
+            <Reveal direction="up" delay={0.1}>
+              <SectionTitle
+                title={category.title}
+                subtitle={category.subtitle}
+                align="center"
+                variant="inline"
+              />
+            </Reveal>
+
             <div className="flex flex-wrap justify-center gap-6 mt-8">
               {
-                category.services.map((service) => (
-                  <Card
-                    key={service.id}
-                    title={service.title}
-                    description={service.description}
-                    icon={service.icon}
-                    iconBg={service.iconBg}
-                    linkText={service.linkText}
-                    linkUrl={service.linkUrl}
-                    className="w-[350px] h-[330px]"
-                  />
+                category.services.map((service, index) => (
+                  <Reveal key={service.id} direction="up" delay={0.1 * (index + 1)}>
+                    <Card
+                      title={service.title}
+                      description={service.description}
+                      icon={service.icon}
+                      iconBg={service.iconBg}
+                      linkText={service.linkText}
+                      linkUrl={service.linkUrl}
+                      className="w-[350px] h-[330px]"
+                    />
+                  </Reveal>
                 ))
               }
             </div>

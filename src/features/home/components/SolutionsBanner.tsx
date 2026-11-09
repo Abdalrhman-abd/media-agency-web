@@ -7,7 +7,7 @@ const SolutionsBanner = () => {
   const navigate=useNavigate();
   return (
     <div className="  p-5  lg:px-0 flex flex-col items-center">
-      <div className= "flex flex-col min-h-[80vh] items-center justify-center w-full max-w-7xl justify-center items-center">
+      <div className= "flex flex-col min-h-[70vh] items-center justify-center w-full max-w-7xl justify-center items-center">
         <div className="lg:ms-40 md:ms-10 ms-3  mb-8 w-full flex justify-center ">
           <SectionTitle
             title="كيف يمكننا مساعدتك ؟"

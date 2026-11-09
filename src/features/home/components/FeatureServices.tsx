@@ -7,7 +7,7 @@ import SectionTitle from '../../../components/ui/SectionTitle.tsx'
 
 const FeatureServices = () => {
   return (
-    <div className=' min-h-[90vh] flex items-center justify-center '>
+    <div className=' min-h-[75vh] flex items-center justify-center '>
       <div className='w-full'>
         <section className='flex flex-col items-center justify-center py-10 px-4'>
           <div className='text-center mb-8'>

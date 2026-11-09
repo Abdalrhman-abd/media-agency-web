@@ -23,6 +23,7 @@
     "i18n": "^0.15.4",
     "i18next": "^26.7.1",
     "iconsax-react": "^0.0.8",
+    "motion": "^14.10.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-hook-form": "^7.91.0",

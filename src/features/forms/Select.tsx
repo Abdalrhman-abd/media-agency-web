@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import arrow from "./../../assets/images/arow.png"
+
 interface Option {
   value: string | number;
   label: string;
@@ -28,15 +28,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           id={inputId}
           name={name}
           className={`w-full  appearance-none px-5 py-3 pl-4 rounded-xl border outline-none transition duration-200 text-gray-400 cursor-pointer ${error
-              ? 'border-red-400 focus:border-red-500 bg-red-50/30'
-              : 'border-[#5d1b9a] focus:border-blue-500 focus:bg-white'
+            ? 'border-red-400 focus:border-red-500 bg-red-50/30'
+            : 'border-[#5d1b9a] focus:border-blue-500 focus:bg-white'
             }`}
-          style={{
-            backgroundImage: `url(${arrow})` ,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'left 20px center',
-            backgroundSize: '12px'
-          }}
+
           {...props}
         >
           <option value="" disabled selected>

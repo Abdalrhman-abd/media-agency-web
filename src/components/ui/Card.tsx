@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
+import { motion } from 'motion/react';
 
 export interface CardProps {
   id?: string | number;
@@ -33,8 +34,13 @@ const Card: React.FC<CardProps> = ({
   iconBg = '',
 }) => {
   return (
-    <div
-      className={`bg-[#e8e8e84e]  rounded-2xl  p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between items-center text-center border border-gray-100 ${className}`}
+    <motion.div
+      whileHover={{
+        y: -8,
+        transition: { duration: 0.3 }
+      }}
+      
+      className={`bg-[#e8e8e84e]  rounded-2xl  p-6 shadow-md hover:shadow-xl  flex flex-col justify-between items-center text-center border border-gray-100 ${className}`}
     >
       <div className="flex flex-col items-center  ">
         {/* الصورة إن وجدت */}
@@ -80,7 +86,7 @@ const Card: React.FC<CardProps> = ({
           )}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

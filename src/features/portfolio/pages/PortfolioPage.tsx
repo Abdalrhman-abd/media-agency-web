@@ -1,6 +1,6 @@
 import React from 'react';
 import SectionTitle from '../../../components/ui/SectionTitle';
-import sort  from "../../../assets/images/sort.png"
+import sort from "../../../assets/images/sort.png"
 import PortfolioFilter from '../components/portfolioFilter';
 import { useMemo, useState } from "react";
 import { projectsData } from "../data";
@@ -9,9 +9,9 @@ import { useSearchParams, Link } from 'react-router-dom';
 import PortfolioPagination from '../components/PortfolioPagination';
 import SectionHero from '../../../components/ui/SectionHero';
 import { Reveal } from '../../../components/ui/Reveal';
-
+import { motion } from 'motion/react';
 const PortfolioPage = () => {
-
+  const MotionLink = motion(Link);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
@@ -34,6 +34,35 @@ const PortfolioPage = () => {
     startIndex,
     startIndex + itemsPerPage
   );
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
+
 
   return (
     <>
@@ -45,7 +74,7 @@ const PortfolioPage = () => {
           className="brand-gradient py-20"
         />
       </div>
-      
+
       <Reveal direction="up" delay={0.1}>
         <div className="mb-8 flex  gap-5 justify-between items-center mt-28 flex-wrap   lg:mx-[14%]  mx-5">
           <PortfolioFilter
@@ -60,7 +89,7 @@ const PortfolioPage = () => {
             }}
           />
           <div>
-            <img src={sort} alt=""  width={40}/>
+            <img src={sort} alt="" width={40} />
           </div>
         </div>
       </Reveal>
@@ -69,18 +98,32 @@ const PortfolioPage = () => {
 
         <div className=' mb-8 py-10 lg:pr-52 md:pr-36 pr-10 '>
           <Reveal direction="right" delay={0.1}>
-            <SectionTitle title='معرض أعمالنا'  align='left' calssName=''/>
+            <SectionTitle title='معرض أعمالنا' align='left' calssName='' />
           </Reveal>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-5 max-w-7xl m-auto ">
+
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="flex flex-wrap justify-center gap-5 max-w-7xl m-auto"
+        >
+
           {visibleProjects.map((project: Project, index: number) => (
-            <Reveal key={project.id} direction="up" delay={0.05 * ((index % itemsPerPage) + 1)}>
-              <Link
+            <Reveal
+              key={project.id} direction="up" delay={0.05 * ((index % itemsPerPage) + 1)}>
+              <MotionLink
                 to={`/portfolio/${project.id}`}
-                className="rounded-lg w-70 lg:w-70  xl:w-[350px] lg:h-96 group cursor-pointer block"
+                whileHover={{ y: -8,scale: 1.0}}
+                variants={cardVariants}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="rounded-lg w-70 lg:w-70 xl:w-[350px] lg:h-96 group cursor-pointer block"
               >
-                <img src={project.image} alt={project.title} className="w-70 lg:w-70 xl:w-[350px]  h-[280px] w-full object-cover rounded-[15px] mb-5 transition-transform duration-300 group-hover:scale-105" />
+                <img src={project.image} alt={project.title} className="w-70 lg:w-70 xl:w-[350px]  h-[280px] w-full object-cover rounded-[15px] mb-5 " />
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-semibold text-xl mb-2 transition-colors">{project.title}</h3>
@@ -90,10 +133,10 @@ const PortfolioPage = () => {
                     <img src={project.icon} alt="icon" className="w-full h-full object-contain" />
                   </div>
                 </div>
-              </Link>
+              </MotionLink>
             </Reveal>
           ))}
-        </div>
+        </motion.div>
 
         {filteredProjects.length > 0 && (
           <Reveal direction="up" delay={0.2}>
@@ -104,7 +147,7 @@ const PortfolioPage = () => {
             />
           </Reveal>
         )}
-      </div>
+      </div >
     </>
   );
 

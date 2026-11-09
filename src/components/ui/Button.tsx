@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { motion } from 'motion/react';
+
 
 interface Button {
   text?: string;
@@ -24,9 +26,14 @@ const Button: React.FC<Button> = ({
   : '!bg-transparent !text-white !border !border-white hover:!bg-white ';
   return (
     <>
-      <button className={`w-37.5  decoration-0 text-center p-3 mt-4 rounded-xl cursor-pointer hover:scale-99 active:scale-95 inline-block ${defaultClasses} ${className}`} type={type} id={id} onClick={onClick}>
+      <motion.button
+       whileHover={{ scale: 1.03 }}
+       whileTap={{ scale: 0.97 }}
+       transition={{ duration: 0.2, ease: 'easeOut' }}
+       className={` w-37.5  decoration-0 text-center p-3 mt-4 rounded-xl cursor-pointer   inline-block ${defaultClasses} ${className}`} type={type} id={id} onClick={onClick}>
+        
         {text}
-      </button>
+      </motion.button>
     </>
   );
 };

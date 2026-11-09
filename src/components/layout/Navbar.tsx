@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../ui/LanguageSwitcher.tsx';
 import { navigationLinks } from '../layout/navigation.ts';
+import { motion, AnimatePresence } from 'motion/react';
 interface ServiceOption {
   title: string;
   path: string;
@@ -92,8 +93,8 @@ const Navbar: React.FC = () => {
                         <Link
                           key={index}
                           to={service.path}
-                          
-                          
+
+
                           onClick={() => setIsOpen(false)}
                           className="block px-4 py-2.5 text-sm hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
                         >
@@ -120,82 +121,110 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:block">
           <Button text="احجز استشارة" onClick={() => navigate('/book-consultation')} />
         </div>
-        <button
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.15 }}
           onClick={() => setIsOpen(!isOpen)}
-          className={`lg:hidden text-2xl shrink-0 ${isHome ? 'text-black' : 'text-white'}`}
+          className={`lg:hidden text-2xl shrink-0 ${isHome ? 'text-black' : 'text-white'
+            }`}
           aria-label="فتح القائمة"
+          aria-expanded={isOpen}
         >
           {isOpen ? '✕' : '☰'}
-        </button>
+        </motion.button>
       </header>
-      {isOpen && (
-        <nav className="fixed top-0 right-0 z-40 flex h-screen w-64 max-w-[85vw] flex-col gap-2 overflow-y-auto bg-white/80 backdrop-blur-md p-5 pt-20 shadow-xl lg:hidden">
-          <Link
-            className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
-            to="/"
-            onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{
+              duration: 0.3,
+              ease: 'easeInOut',
+            }}
+            className="fixed top-0 right-0 z-40 flex h-screen w-64 max-w-[85vw] flex-col gap-2 overflow-y-auto bg-white/80 backdrop-blur-md p-5 pt-20 shadow-xl lg:hidden"
           >
-            الرئيسية
-          </Link>
-          <Link
-            className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
-            to="/about"
-            onClick={() => setIsOpen(false)}
-          >
-            من نحن
-          </Link>
-          <button
-            className="p-3 text-sm text-right rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
-            onClick={() => navigate('/services ')}
-          >
-            الخدمات
-          </button>
-          <svg
-            className={`w-4 h-4 transition-transform duration-200 ${isOpen ? '' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-          {servicesList.map((service, index) => (
-            <Link
-              key={index}
-              to={service.path}
-              onClick={() => { setIsOpen(false) }}
-              className="pr-7 py-2 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
-            >
-              {service.title}
-            </Link>
-          ))}
-          <Link
-            className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
-            to="/PortfolioPage"
-            onClick={() => setIsOpen(false)}
-          >
-            معرض الأعمال
-          </Link>
-          <Link
-            className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
-            to="/ContactPage"
-            onClick={() => setIsOpen(false)}
-          >
-            اتصل بنا
-          </Link>
-          <div className="mt-2">
-            <Button
-              text="احجز استشارة"
-              className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
-              onClick={() => navigate('/book-consultation')}
-            />
-          </div>
-        </nav>
-      )}
+            {/* جميع روابط القائمة الأصلية تبقى كما هي */}
+
+            <nav className="fixed top-0 right-0 z-40 flex h-screen w-64 max-w-[85vw] flex-col gap-2 overflow-y-auto bg-white/80 backdrop-blur-md p-5 pt-20 shadow-xl lg:hidden">
+              <Link
+                className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                to="/"
+                onClick={() => setIsOpen(false)}
+              >
+                الرئيسية
+              </Link>
+              <Link
+                className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                to="/about"
+                onClick={() => setIsOpen(false)}
+              >
+                من نحن
+              </Link>
+              <button
+                className="p-3 text-sm text-right rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                onClick={() => {
+                  navigate('/services');
+                  setIsOpen(false);
+                }}
+              >
+                الخدمات
+              </button>
+              <svg
+                className={`w-4 h-4 transition-transform duration-200 ${isOpen ? '' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+              {servicesList.map((service, index) => (
+                <Link
+                  key={index}
+                  to={service.path}
+                  onClick={() => { setIsOpen(false) }}
+                  className="pr-7 py-2 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                >
+                  {service.title}
+                </Link>
+              ))}
+              <Link
+                className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                to="/PortfolioPage"
+                onClick={() => setIsOpen(false)}
+              >
+                معرض الأعمال
+              </Link>
+              <Link
+                className="p-3 text-sm rounded-lg hover:text-transparent hover:bg-gradient-to-r hover:from-blue-800 hover:to-purple-900 hover:bg-clip-text"
+                to="/ContactPage"
+                onClick={() => setIsOpen(false)}
+              >
+                اتصل بنا
+              </Link>
+              <div className="mt-2">
+                <Button
+                  text="احجز استشارة"
+                  className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
+                  onClick={() => navigate('/book-consultation')}
+                />
+              </div>
+            </nav>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
+
+
+
+
+
     </>
   );
 };

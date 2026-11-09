@@ -1,5 +1,5 @@
 import type { TeamLead, TeamMember } from './../types/about.types';
-import person from '../../../assets/images/icon1.png';
+
 import lead from '../../../assets/images/lead.png';
 export const teamLead: TeamLead = {
   name: 'أحمد محمد',

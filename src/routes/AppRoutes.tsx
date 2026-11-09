@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '../components/layout/MainLayout';
-import HomePage from '../features/home/pages/HomePage';
-import AboutPage from '../features/about/pages/AboutPage';
-import ServicesPage from '../features/services/pages/ServicesPage';
-import PortfolioPage from '../features/portfolio/pages/PortfolioPage';
-import ContactPage from '../features/contact/pages/ContactPage';
-import BookingPage from '../features/booking/pages/BookingPage';
-import NotFound from '../features/NotFound/NotFound';
-import ProjectDetailsPage from '../features/portfolio/ProjectDetailsPage.tsx'
+
+// هاد هوه تبيق التاخير على الصفحات 
+const HomePage = lazy(() => import('../features/home/pages/HomePage'));
+const AboutPage = lazy(() => import('../features/about/pages/AboutPage'));
+const ServicesPage = lazy(() => import('../features/services/pages/ServicesPage'));
+const PortfolioPage = lazy(() => import('../features/portfolio/pages/PortfolioPage'));
+const ContactPage = lazy(() => import('../features/contact/pages/ContactPage'));
+const BookingPage = lazy(() => import('../features/booking/pages/BookingPage'));
+const NotFound = lazy(() => import('../features/NotFound/NotFound'));
+const ProjectDetailsPage = lazy(() => import('../features/portfolio/ProjectDetailsPage'));
+
+// هاد امشان التحميل 
+const PageLoader = () => (
+  <div className="flex justify-center items-center min-h-[60vh]">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+  </div>
+);
 
 export const AppRoutes: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/PortfolioPage" element={<PortfolioPage />} />
-        <Route path="/portfolio/:projectId" element={<ProjectDetailsPage />} />
-        <Route path="/ContactPage" element={<ContactPage />} />
-        <Route path="/book-consultation" element={<BookingPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/PortfolioPage" element={<PortfolioPage />} />
+          <Route path="/portfolio/:projectId" element={<ProjectDetailsPage />} />
+          <Route path="/ContactPage" element={<ContactPage />} />
+          <Route path="/book-consultation" element={<BookingPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };

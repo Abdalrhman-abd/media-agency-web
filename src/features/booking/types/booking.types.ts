@@ -5,7 +5,7 @@ export interface BookingPayload {
   jobTitle: string;
   companyName: string;
   phone: string;
-  countryCode: string; // مثل +963
+  countryCode: string;
   email: string;
   serviceType: string;
   preferredDate: string;

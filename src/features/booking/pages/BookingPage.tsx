@@ -22,7 +22,7 @@ export const BookingPage: React.FC = () => {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<BookingForm>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
@@ -45,19 +45,20 @@ export const BookingPage: React.FC = () => {
   }
 
   return (
-    <>
-      <div className='flex justify-center items-center'>
-        <SectionHero title='احجز الآن' subtitle='دعنا نخطط لنجاحك. املأ النموذج وسيتواصل معك خبراؤنا لتحديد موعد جلستك الاستشارية' variant='stacked' className="brand-gradient py-20" />
+    <div className="w-full overflow-x-hidden">
+      <div className='flex justify-center items-center w-full'>
+        <SectionHero title='احجز الآن' subtitle='دعنا نخطط لنجاحك. املأ النموذج وسيتواصل معك خبراؤنا لتحديد موعد جلستك الاستشارية' variant='stacked' className="brand-gradient py-20 w-full" />
       </div>
-      <div className="max-w-5xl mx-auto px-4 py-8 dir-rtl">
-        <div className='ml-0 sm:ml-180'>
+      
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 dir-rtl box-border">
+        <div className='mb-6 w-full text-right'>
           <SectionTitle title='احجز استشارتك' calssName='text' />
-          <h2 className="text-lg font-bold text-black mt-12">البيانات الشخصية</h2>
+          <h2 className="text-lg font-bold text-black mt-6">البيانات الشخصية</h2>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-no-repeat bg-cover bg-center py-16" noValidate style={{ backgroundImage: `url(${BookingImage})` }}>
-          <div className="space-y-4 ">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full bg-no-repeat bg-cover bg-center py-8 sm:py-16 px-4 sm:px-8 rounded-2xl box-border" noValidate style={{ backgroundImage: `url(${BookingImage})` }}>
+          <div className="space-y-4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
               <Input
                 label="الاسم الكامل"
                 required
@@ -96,8 +97,8 @@ export const BookingPage: React.FC = () => {
               error={errors.email?.message}
             />
 
-            <h2 className="text-lg font-bold text-gray-800 p-3">تفاصيل المشروع</h2>
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+            <h2 className="text-lg font-bold text-gray-800 p-3">تفاصيل الطلب</h2>
+            <div className="w-full">
               <Select
                 label=" نوع الخدمة"
                 required
@@ -110,7 +111,7 @@ export const BookingPage: React.FC = () => {
                 error={errors.service?.message}
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
               <DateField
                 label="الوقت المفضل"
                 type="time"
@@ -126,6 +127,9 @@ export const BookingPage: React.FC = () => {
               />
             </div>
 
+          </div>
+
+          <div className="mt-4 w-full">
             <Controller
               name="meetingType"
               control={control}
@@ -137,7 +141,9 @@ export const BookingPage: React.FC = () => {
                 />
               )}
             />
+          </div>
 
+          <div className="mt-4 w-full">
             <Textarea
               label="وصف المشروع "
               required
@@ -146,42 +152,17 @@ export const BookingPage: React.FC = () => {
               error={errors.description?.message}
             />
           </div>
-          <div className='text-left'>
-            <Button
-              text="تأكيد الحجز"
-              onClick={() => console.log('تم الضغط')}
-            />
-          </div>
+        </form>
 
-          <Controller
-            name="meetingType"
-            control={control}
-            render={({ field }) => (
-              <MeetingTypeRadio
-                value={field.value}
-                onChange={field.onChange}
-                error={errors.meetingType?.message}
-              />
-            )}
-          />
-
-          <Textarea
-            label="وصف المشروع "
-            required
-            maxLength={100}
-            {...register('description')}
-            error={errors.description?.message}
-          />
-        </form >
-        <div className='text-left'>
+        <div className='text-left w-full ml-3'>
           <Button
             text="تأكيد الحجز"
-            onClick={() => console.log('تم الضغط')}
-            className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white"
+            onClick={handleSubmit(onSubmit)}
+            className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white w-full sm:w-auto px-8 py-3"
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default BookingPage;

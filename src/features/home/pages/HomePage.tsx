@@ -5,13 +5,12 @@ import SolutionsBanner from './../components/SolutionsBanner';
 import FeaturePortfolio from '../components/FeaturePortfolio';
 import TestimonialsSlider from '../components/testimonials/copmmponents/TestimonialsSlider';
 import { motion, useReducedMotion } from 'motion/react';
-import { Reveal } from '../../../components/ui/Reveal'; // عدل المسار حسب مكان ملف Reveal لديك
+import { Reveal } from '../../../components/ui/Reveal';
 
 const HomePage = () => {
   const shouldReduceMotion = useReducedMotion();
   return (
-    <>
-
+    <div className="overflow-x-hidden w-full">
       <motion.div
         initial={
           shouldReduceMotion
@@ -21,32 +20,30 @@ const HomePage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: shouldReduceMotion ? 0 : 0.5,
-           ease: 'easeOut',
+            ease: 'easeOut',
         }}
       >
-  <Reveal direction="up" delay={0.1}>
-        <HeroSection />
-      </Reveal>
+        <Reveal direction="up" delay={0.1}>
+          <HeroSection />
+        </Reveal>
 
-      <Reveal direction="up" delay={0.2}>
-        <FeatureServices />
-      </Reveal>
+        <Reveal direction="up" delay={0.2}>
+          <FeatureServices />
+        </Reveal>
 
-      <Reveal direction="up" delay={0.2}>
-        <FeaturePortfolio />
-      </Reveal>
+        <Reveal direction="up" delay={0.2}>
+          <FeaturePortfolio />
+        </Reveal>
 
-      <Reveal direction="up" delay={0.2}>
-        <SolutionsBanner />
-      </Reveal>
+        <Reveal direction="up" delay={0.2}>
+          <SolutionsBanner />
+        </Reveal>
 
-      <Reveal direction="up" delay={0.2}>
-        <TestimonialsSlider />
-      </Reveal>
-
+        <Reveal direction="up" delay={0.2}>
+          <TestimonialsSlider />
+        </Reveal>
       </motion.div>
-    
-    </>
+    </div>
   );
 };
 

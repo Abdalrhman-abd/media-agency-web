@@ -24,33 +24,28 @@ const HomePage = () => {
            ease: 'easeOut',
         }}
       >
-
-
+  <Reveal direction="up" delay={0.1}>
         <HeroSection />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
         <FeatureServices />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
         <FeaturePortfolio />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
         <SolutionsBanner />
+      </Reveal>
+
+      <Reveal direction="up" delay={0.2}>
         <TestimonialsSlider />
+      </Reveal>
+
       </motion.div>
-      <Reveal direction="up" delay={0.1}>
-        <HeroSection />
-      </Reveal>
-
-      <Reveal direction="up" delay={0.2}>
-        <FeatureServices />
-      </Reveal>
-
-      <Reveal direction="up" delay={0.2}>
-        <FeaturePortfolio />
-      </Reveal>
-
-      <Reveal direction="up" delay={0.2}>
-        <SolutionsBanner />
-      </Reveal>
-
-      <Reveal direction="up" delay={0.2}>
-        <TestimonialsSlider />
-      </Reveal>
+    
     </>
   );
 };

@@ -3,7 +3,7 @@ import ContactInfo from '../components/ContactInfo';
 import SectionTitle from '../../../components/ui/SectionTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
-
+import ContactForm from '../components/ContactForm';
 const ContactPage = () => {
   return (
     <>

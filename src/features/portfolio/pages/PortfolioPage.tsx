@@ -4,7 +4,7 @@ import sort from "../../../assets/images/sort.png"
 import PortfolioFilter from '../components/portfolioFilter';
 import { useMemo, useState } from "react";
 import { projectsData } from "../data";
-import type { PortfolioCategory, Project } from "./../types";
+import type { PortfolioCategory, Project } from "./../types/portfolio.types";
 import { useSearchParams, Link } from 'react-router-dom';
 import PortfolioPagination from '../components/PortfolioPagination';
 import SectionHero from '../../../components/ui/SectionHero';

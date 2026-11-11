@@ -1,10 +1,18 @@
-export interface StatItem {
-  id: string;
-  value: string;
-  label: string;
-  subLabel?: string;
-  avatars?: string[];
+ import type { MediaRef } from "../../../shared/types/media";
+ 
+export interface SocialLinks {
+  linkedin?: string;
+  instagram?: string;
 }
+export interface TeamMember {
+  id: string;
+  name: string;
+  position: string;
+  bio: string;
+  photo: MediaRef;
+  socialLinks: SocialLinks;
+}
+
 
 
 export type TeamLead = {
@@ -14,9 +22,8 @@ export type TeamLead = {
   description: string;
 };
 
-// اشتقاق نوع عضو الفريق من TeamLead
-export type TeamMember = Pick<TeamLead,
-  "name" | "role" | "photo"> & {
-  id: number;
-};
+
+
+
+
 

@@ -1,21 +1,31 @@
-export type MeetingType = 'in_office' | 'online';
-
+export type MeetingType = 'ONLINE' | 'IN_PERSON';
+// تجهيز البيانات للارسال3
 export interface BookingPayload {
   fullName: string;
+  phone: string;
+  email: string;
+  serviceId: string;
+  date: string;
+  time: string;
+  description: string;
+  meetingType: MeetingType;
+
+
+  countryCode: string;
   jobTitle: string;
   companyName: string;
-  phone: string;
-  countryCode: string;
-  email: string;
-  serviceType: string;
-  preferredDate: string;
-  preferredTime: string;
-  meetingType: MeetingType;
-  projectDescription: string;
 }
 
 export interface BookingResponse {
   success: boolean;
   bookingId: string;
   message: string;
+}
+
+export interface AvailableTimesResponse {
+  success: boolean;
+  data: {
+    date: string;
+    takenTimes: string[];
+  };
 }

@@ -1,69 +1,75 @@
-import React from 'react'
-import { servicesData } from '../types/data'
-import SectionHero from '../../../components/ui/SectionHero'
-import SectionTitle from '../../../components/ui/SectionTitle'
-import Card from '../../../components/ui/Card'
-import { Reveal } from '../../../components/ui/Reveal'
+import React from 'react';
+import SectionHero from '../../../components/ui/SectionHero';
+import SectionTitle from '../../../components/ui/SectionTitle';
+import Card from '../../../components/ui/Card';
+import { Reveal } from '../../../components/ui/Reveal';
+import { useServices } from '../api/useServices';
+import { ServiceItem } from '../types/services.types';
 
 const ServicesPage = () => {
-    const sortedServices = [...servicesData].sort((a, b) => {
-    const order = ["التصميم الإبداعي", "الإعلانات", "المطبوعات"];
+  const { data, isLoading, error } = useServices();
 
-    return order.indexOf(a.title) - order.indexOf(b.title);
-  });
+  const apiServices: ServiceItem[] = Array.isArray(data) 
+    ? data 
+    : (data as any)?.data || [];
 
   return (
     <>
       <section>
         <div className="flex justify-center items-center">
           <SectionHero
-            title=" خدماتنا"
-            subtitle="ثلاثه مسارات متكامله التصميم الاعلانات والامطبوعات  تجارب ابداعيه مخصصه تساعدك على تمييز والظهور"
+            title="خدماتنا"
+            subtitle="حلول إبداعية متكاملة ومخصصة لمساعدتك على التميز والظهور"
             variant="stacked"
             className="brand-gradient py-20"
           />
         </div>
       </section>
-      <div>
-        {sortedServices.map((category) => (
-          <section key={category.id} className="py-12">
 
-            <Reveal direction="up" delay={0.1}>
-              <SectionTitle
-                title={category.title}
-                subtitle={category.subtitle}
-                align="center"
-                variant="inline"
-              />
-            </Reveal>
+      <section className="py-12">
+        <Reveal direction="up" delay={0.1}>
+          <SectionTitle
+            title="جميع الخدمات"
+            subtitle="استعرض كافة خدماتنا المتاحة للارتقاء بعلامتك التجارية"
+            align="center"
+            variant="inline"
+          />
+        </Reveal>
 
-            <div className="flex flex-wrap justify-center gap-6 mt-8">
-              {
-                category.services.map((service, index) => (
-                  <Reveal key={service.id} direction="up" delay={0.1 * (index + 1)}>
-                    <Card
-                      title={service.title}
-                      description={service.description}
-                      icon={service.icon}
-                      iconBg={service.iconBg}
-                      linkText={service.linkText}
-                      linkUrl={service.linkUrl}
-                      className="w-[350px] h-[330px]"
-                    />
-                  </Reveal>
-                ))
-              }
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+            <p className="text-lg font-medium">جاري تحميل الخدمات...</p>
+          </div>
+        ) : error ? (
+          <div className="flex justify-center items-center py-20">
+            <p className="text-red-500 font-medium">حدث خطأ أثناء جلب البيانات من السيرفر.</p>
+          </div>
+        ) : apiServices.length === 0 ? (
+          <div className="flex justify-center items-center py-20">
+            <p className="text-gray-500 font-medium">لا توجد خدمات متاحة حالياً.</p>
+          </div>
+        ) : (
+          /* تم ضبط الحاوية هنا لتنظيم الكروت وكسرها بشكل متجاوب (Responsive) تماماً مثل تصميمك القديم */
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap justify-center items-center gap-6 mt-8">
+              {apiServices.map((service, index) => (
+                <Reveal key={service.id} direction="up" delay={0.1 * (index + 1)}>
+                  <Card
+                    title={service.title}
+                    description={service.summary}
+                    icon={service.icon?.url || undefined}
+                    linkText="اكتشف المزيد"
+                    linkUrl={`/services/${service.slug}`}
+                    className="w-[350px] h-[330px]"
+                  />
+                </Reveal>
+              ))}
             </div>
-
-
-          </section>
-        ))}
-      </div>
-
-
-
+          </div>
+        )}
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default ServicesPage
+export default ServicesPage;

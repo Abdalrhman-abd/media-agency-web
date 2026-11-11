@@ -20,6 +20,7 @@ export interface BookingResponse {
   success: boolean;
   bookingId: string;
   message: string;
+  
 }
 
 export interface AvailableTimesResponse {

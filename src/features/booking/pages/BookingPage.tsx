@@ -14,25 +14,92 @@ import BookingImage from '../../../assets/images/Bookingimage.png';
 import Button from '../../../components/ui/Button.tsx';
 import SectionHero from '../../../components/ui/SectionHero.tsx';
 import { Reveal } from '../../../components/ui/Reveal.tsx';
+
+// الإضافات الخاصة بالربط مع الباك إند
+import { useServices } from '../../services/api/useServices'; // جلب الخدمات الحقيقية
+import { useCreateBooking } from '../api/useCreateBooking'; // هوك إرسال الحجز
+import { useRecaptcha } from '../../../shared/'; // هوك الكابتشا (تأكد من مساره الصحيح لديك)
+
 export const BookingPage: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [bookingReference, setBookingReference] = useState<string>(''); // لعرض رقم المرجع الحقيقي
+
+  // 1. جلب الخدمات الحقيقية من السيرفر
+  const { data: servicesData, isLoading: isLoadingServices } = useServices();
+  const servicesList = Array.isArray(servicesData) ? servicesData : (servicesData as any)?.data || [];
+
+  // 2. تفعيل خدمة الـ reCAPTCHA
+  const { executeRecaptcha } = useRecaptcha();
 
   const {
     register,
     handleSubmit,
     control,
     reset,
+    setError,
     formState: { errors },
   } = useForm<BookingForm>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
-      meetingType: 'online',
+      meetingType: 'ONLINE',
     },
   });
 
-  const onSubmit = (data: BookingForm) => {
-    console.log('بيانات الحجز:', data);
-    setIsSubmitted(true);
+  // 3. إعداد الـ Mutation للإرسال مع التعامل مع الأخطاء والقادم من الباك
+  const { mutate: submitBooking, isPending } = useCreateBooking({
+    onSuccess: (response) => {
+      // حفظ رقم المرجع القادم من السيرفر (مثل MD-4F7K2Q)
+      setBookingReference(response.bookingId || 'نجاح');
+      setIsSubmitted(true);
+    },
+    onError: (error: any) => {
+      const status = error?.response?.status;
+      const serverData = error?.response?.data;
+
+      if (status === 400 && serverData?.fieldErrors) {
+        // خطأ 400: ربط الأخطاء بالحقول المقابلة عبر setError
+        Object.keys(serverData.fieldErrors).forEach((field) => {
+          setError(field as any, {
+            type: 'server',
+            message: serverData.fieldErrors[field],
+          });
+        });
+      } else if (status === 409) {
+        alert('هذا الوقت تم حجزه للتو، يرجى اختيار وقت آخر.');
+      } else if (status === 422) {
+        alert(serverData?.message || 'مخالفة لقواعد الحجز.');
+      } else if (status === 429) {
+        alert('محاولات كثيرة جداً، حاول لاحقاً.');
+      } else {
+        alert('حدث خطأ غير متوقع، يرجى التحقق من الاتصال بالإنترنت.');
+      }
+    },
+  });
+
+  const onSubmit = async (data: BookingForm) => {
+    try {
+      // الحصول على رمز reCAPTCHA الحقيقي قبل الإرسال
+      const recaptchaToken = await executeRecaptcha('booking');
+
+      // إرسال البيانات والتوكن للباك إند
+      submitBooking({
+        data: {
+          fullName: data.fullName,
+          jobTitle: data.jobTitle,
+          companyName: data.companyName,
+          phone: data.phone,
+          email: data.email,
+          serviceId: data.service, // معرف الخدمة الحقيقي
+          date: data.date,
+          time: data.time,
+          meetingType: data.meetingType as 'ONLINE' | 'IN_PERSON',
+          description: data.description,
+        },
+        token: recaptchaToken || '',
+      });
+    } catch (err) {
+      console.error('Recaptcha error:', err);
+    }
   };
 
   const handleReset = () => {
@@ -41,11 +108,11 @@ export const BookingPage: React.FC = () => {
   };
 
   if (isSubmitted) {
-    return <SuccessCard onReset={handleReset} />;
+    return <SuccessCard reference={bookingReference} onReset={handleReset} />;
   }
 
   return (
-    <div className="w-full overflow-x-hidden ">
+    <div className="w-full overflow-x-hidden">
       <Reveal direction="up" delay={0.1}>
         <div className='flex justify-center items-center w-full'>
           <SectionHero title='احجز الآن' subtitle='دعنا نخطط لنجاحك. املأ النموذج وسيتواصل معك خبراؤنا لتحديد موعد جلستك الاستشارية' variant='stacked' className="brand-gradient py-20 w-full" />
@@ -54,7 +121,7 @@ export const BookingPage: React.FC = () => {
       <Reveal direction="up" delay={0.2}>
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 dir-rtl box-border lg:py-24 py-5">
           <div className='mb-6 w-full text-right'>
-            <SectionTitle title='احجز استشارتك' calssName='text' />
+            <SectionTitle title='احجز استشارتك' />
             <h2 className="text-lg font-bold text-black mt-6">البيانات الشخصية</h2>
           </div>
 
@@ -102,13 +169,13 @@ export const BookingPage: React.FC = () => {
               <h2 className="text-lg font-bold text-gray-800 p-3">تفاصيل الطلب</h2>
               <div className="w-full">
                 <Select
-                  label=" نوع الخدمة"
+                  label="نوع الخدمة"
                   required
-                  options={[
-                    { value: 'web', label: 'تطوير موقع إلكتروني' },
-                    { value: 'mobile', label: 'تطبيق جوال' },
-                    { value: 'consultation', label: 'استشارة برمجية' },
-                  ]}
+                  disabled={isLoadingServices}
+                  options={servicesList.map((service: any) => ({
+                    value: service.id, // إرسال الـ ID الحقيقي للخدمة
+                    label: service.title,
+                  }))}
                   {...register('service')}
                   error={errors.service?.message}
                 />
@@ -147,7 +214,7 @@ export const BookingPage: React.FC = () => {
 
             <div className="mt-4 w-full">
               <Textarea
-                label="وصف المشروع "
+                label="وصف المشروع"
                 required
                 maxLength={100}
                 {...register('description')}
@@ -158,14 +225,15 @@ export const BookingPage: React.FC = () => {
 
           <div className='text-left w-full ml-3'>
             <Button
-              text="تأكيد الحجز"
+              text={isPending ? "جاري الإرسال..." : "تأكيد الحجز"}
+              disabled={isPending}
               onClick={handleSubmit(onSubmit)}
-              className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white w-full sm:w-auto px-8 py-3"
+              className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white w-full sm:w-auto px-8 py-3 disabled:opacity-50"
             />
           </div>
         </div>
       </Reveal>
-    </div >
+    </div>
   );
 };
 export default BookingPage;

@@ -21,12 +21,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           className={`w-full px-4 py-3 rounded-xl border outline-none transition duration-200 text-gray-800 ${
             error
-              ? 'border-red-400 focus:border-red-500 bg-red-50/30'
-              : 'border-[#5d1b9a] hover:to-purple-800 focus:border-blue-500 focus:bg-white'
+              ? 'border-red-500 focus:border-red-600 bg-red-50/30'
+              : 'border-[#5d1b9a] focus:border-blue-500 focus:bg-white'
           }`}
           {...props}
         />
-        {error && <span className="text-xs text-red-500">{error}</span>}
+        {error && (
+          <div className="flex items-center gap-1.5 text-xs text-red-500 mt-0.5">
+            <span aria-hidden="true">⚠️</span>
+            <span>{error}</span>
+          </div>
+        )}
       </div>
     );
   }

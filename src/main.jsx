@@ -6,6 +6,7 @@ import App from './App.jsx';
 import "./i18n.js"
 import ScrollToTop from './shared/Utils/ScrollToTop.js'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

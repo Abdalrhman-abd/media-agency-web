@@ -2,11 +2,15 @@ import LanguageDirection from './locales/commponents/LanguageDirection';
 import { AppRoutes } from './routes/AppRoutes';
 import { AnimatePresence, motion } from 'motion/react';
 import { useLocation } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; 
+
+const queryClient = new QueryClient();
+
 const App = () => {
   const location = useLocation();
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
@@ -19,7 +23,7 @@ const App = () => {
           <AppRoutes />
         </motion.div>
       </AnimatePresence>
-    </>
+    </QueryClientProvider>
   );
 };
 

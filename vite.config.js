@@ -7,5 +7,12 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     open: true,
+    proxy: {
+      '/api': {
+        target: 'https://media-website-api.vercel.app',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });

@@ -1,17 +1,31 @@
-export interface ServiceCard {
-  id: number;
-  icon: string;
-  title: string;
-  description: string;
-  linkText: string;
-  linkUrl: string;
-  iconBg?: string;
+// src/types/api.ts (أو ملف الأنواع الخاص بك)
+
+export interface MediaRef {
+  id: string;
+  url: string;
+  type: 'IMAGE' | 'VIDEO' | 'DOCUMENT';
+  width: number | null;
+  height: number | null;
+  alt: string | null;
 }
 
-export interface ServiceCategory {
-  id: number;
+export interface ServiceItem {
+  id: string;
+  slug: string;
   title: string;
-  subtitle: string;
+  summary: string;
+  features: string[];
+  icon: MediaRef | null;
+  cover: MediaRef | null;
+}
 
-  services: ServiceCard[];
+export interface ServicesResponse {
+  success: boolean;
+  data: ServiceItem[];
+  meta?: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 }

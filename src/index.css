@@ -42,3 +42,9 @@
   background-clip: text;
   color: transparent;
 }
+
+@media (max-width: 768px) {
+  .grecaptcha-badge {
+    bottom: 80px !important; /* رفعها للأعلى قليلاً لتجنب تغطية الأزرار السفلية */
+  }
+}

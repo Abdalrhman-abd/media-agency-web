@@ -6,8 +6,13 @@ import { Reveal } from '../../../components/ui/Reveal';
 import { useServices } from '../api/useServices';
 import { ServiceItem } from '../types/services.types';
 
+// استيراد المكونات التي أنشأناها لحالات التحميل والأخطاء
+import { CardSkeleton } from '../../../shared/ui/Skeleton';
+import { ErrorState } from '../../../shared/ui/ErrorState';
+import { EmptyState } from '../../../shared/ui/EmptyState';
+
 const ServicesPage = () => {
-  const { data, isLoading, error } = useServices();
+  const { data, isLoading, error, refetch } = useServices();
 
   const apiServices: ServiceItem[] = Array.isArray(data) 
     ? data 
@@ -37,19 +42,29 @@ const ServicesPage = () => {
         </Reveal>
 
         {isLoading ? (
-          <div className="flex justify-center items-center py-20">
-            <p className="text-lg font-medium">جاري تحميل الخدمات...</p>
+          // استخدام CardSkeleton المتطابقة مع مقاس كروت الخدمات لتجنب اهتزاز الصفحة
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap justify-center items-center gap-6 mt-8">
+              {[1, 2, 3].map((n) => (
+                <CardSkeleton key={n} />
+              ))}
+            </div>
           </div>
         ) : error ? (
-          <div className="flex justify-center items-center py-20">
-            <p className="text-red-500 font-medium">حدث خطأ أثناء جلب البيانات من السيرفر.</p>
-          </div>
+          // استخدام مكون الـ ErrorState الاحترافي مع زر إعادة المحاولة
+          <ErrorState 
+            title="تعذر تحميل الخدمات" 
+            message="حدث خطأ أثناء جلب البيانات من السيرفر. يرجى المحاولة مرة أخرى."
+            onRetry={() => refetch()} 
+          />
         ) : apiServices.length === 0 ? (
-          <div className="flex justify-center items-center py-20">
-            <p className="text-gray-500 font-medium">لا توجد خدمات متاحة حالياً.</p>
-          </div>
+          // استخدام مكون الـ EmptyState عندما تكون القائمة فارغة
+          <EmptyState 
+            title="لا توجد خدمات متاحة" 
+            message="نعمل حالياً على تجهيز خدمات جديدة، يرجى العودة لاحقاً."
+          />
         ) : (
-          /* تم ضبط الحاوية هنا لتنظيم الكروت وكسرها بشكل متجاوب (Responsive) تماماً مثل تصميمك القديم */
+          /* تم ضبط الحاوية هنا لتنظيم الكروت وكسرها بشكل متجاوب تماماً كما في تصميمك */
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap justify-center items-center gap-6 mt-8">
               {apiServices.map((service, index) => (

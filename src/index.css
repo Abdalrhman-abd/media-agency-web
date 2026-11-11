@@ -48,3 +48,8 @@
     bottom: 80px !important; /* رفعها للأعلى قليلاً لتجنب تغطية الأزرار السفلية */
   }
 }
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

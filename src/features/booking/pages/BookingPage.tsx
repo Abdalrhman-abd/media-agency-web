@@ -73,9 +73,9 @@ export const BookingPage: React.FC = () => {
     console.log("بيانات الحجز:", data);
 
     try {
-      // إنشاء reCAPTCHA Token حقيقي
-      const recaptchaToken = await getToken('booking');
 
+      const recaptchaToken = await getToken('booking');
+      // نطلب رمز التحقق من Google.
       if (!recaptchaToken) {
         alert("فشل التحقق الأمني، يرجى المحاولة مرة أخرى");
         return;

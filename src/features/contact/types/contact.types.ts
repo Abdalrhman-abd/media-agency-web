@@ -5,7 +5,7 @@ export const contactSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صحيح"),
   message: z.string().min(1, "الرجاء كتابة الرسالة").max(100, "الرسالة يجب ألا تتجاوز 100 حرف"),
 });
-
+// هذا السطر يجعل TypeScript يستخرج أنواع الحقول تلقائياً من contactSchema.
 export type ContactFormData = z.infer<typeof contactSchema>;
 export type ContactPayload = ContactFormData;
 

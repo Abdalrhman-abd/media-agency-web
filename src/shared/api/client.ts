@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { handleApiError } from './errorHandler';
+import type { ApiSuccess, ApiResult } from '../types/api';
 
 export const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -8,24 +9,41 @@ export const apiClient = axios.create({
   },
 });
 
-// إضافة ترويسة اللغة تلقائياً مع كل طلب بناءً على اختيار المستخدم (افتراضياً ar)
+// إضافة لغة المستخدم مع كل طلب
 apiClient.interceptors.request.use((config) => {
-  const currentLang = localStorage.getItem('lang') || 'ar';
-  config.headers['Accept-Language'] = currentLang;
+  const savedLang = localStorage.getItem('lang');
+  const currentLang = savedLang === 'en' ? 'en' : 'ar';
+
+  config.headers.set('Accept-Language', currentLang);
+
   return config;
 });
 
-// معالجة الأخطاء الاستباقية في الـ Response Interceptor
+// معالجة أخطاء الاستجابة
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    const errorBody = handleApiError(error);
-    
-    // التعامل مع الحالات الخاصة (مثل 429 كثرة الطلبات أو 5xx أخطاء السيرفر)
-    if (error.response?.status === 429) {
-      console.warn('تم تجاوز حد الطلبات المسموح (Rate Limit). حاول مرة أخرى لاحقاً.');
+    const apiError = handleApiError(error);
+
+    if (apiError.status === 429) {
+      console.warn(
+        'تم تجاوز حد الطلبات المسموح. حاول مرة أخرى لاحقاً.'
+      );
     }
 
-    return Promise.reject(errorBody);
+    return Promise.reject(apiError);
   }
 );
+
+// GET Helper
+export async function apiGet<T>(
+  url: string,
+  params?: Record<string, unknown>
+): Promise<ApiResult<T>> {
+  const response = await apiClient.get<ApiSuccess<T>>(url, { params });
+
+  return {
+    data: response.data.data,
+    meta: response.data.meta,
+  };
+}

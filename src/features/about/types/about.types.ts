@@ -1,29 +1,26 @@
- import type { MediaRef } from "../../../shared/types/media";
- 
+import type { MediaRef } from '../../../shared/types/media';
+
 export interface SocialLinks {
-  linkedin?: string;
-  instagram?: string;
+  behance?: string | null;
+  linkedin?: string | null;
+  instagram?: string | null;
 }
+
 export interface TeamMember {
   id: string;
   name: string;
   position: string;
   bio: string;
-  photo: MediaRef;
+  photo: MediaRef | null;
   socialLinks: SocialLinks;
 }
 
 
-
-export type TeamLead = {
+export interface TeamLead {
+  id: string;
   name: string;
-  role: string;
-  photo: string;
-  description: string;
-};
-
-
-
-
-
-
+  position: string;
+  bio: string;
+  photo: MediaRef | null;
+  socialLinks: SocialLinks;
+}

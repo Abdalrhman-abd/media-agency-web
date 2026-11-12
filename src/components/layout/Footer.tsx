@@ -1,6 +1,6 @@
 import logo from '../../assets/images/logofooter.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import iconf1 from '../../assets/images/Group.png';
 import iconf2 from '../../assets/images/phonef.png';
 
@@ -8,12 +8,18 @@ import location from '../../assets/images/location.png';
 import phone from '../../assets/images/phone.png';
 import meeseg from '../../assets/images/meeseg.png';
 
-
 import half from '../../assets/images/half-icon.png';
 
 import { Link } from 'react-router-dom';
+import { useSiteSettings } from '../../shared/api/useSiteSettings';
 
 const Footer = () => {
+  const { settings } = useSiteSettings();
+  const { address, phone: phoneNumber, email, whatsapp, socialLinks } = settings;
+
+  const cleanWhatsapp = whatsapp ? whatsapp.replace(/[^\d]/g, '') : '';
+  const whatsappUrl = socialLinks?.whatsapp || (cleanWhatsapp ? `https://wa.me/${cleanWhatsapp}` : '');
+
   return (
     <>
       <footer className="w-full overflow-hidden relative">
@@ -89,7 +95,7 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={location}
                     />
-                    <h3>حلب - سوريا</h3>
+                    <h3>{address || "حلب - سوريا"}</h3>
                   </div>
 
                   <div className="flex items-center gap-5 p-3">
@@ -97,9 +103,9 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={phone}
                     />
-                    <a href="tel:+96584112365" dir="">
+                    <a href={`tel:${(phoneNumber || "").replace(/\s+/g, '')}`} dir="">
                       {' '}
-                      +965 841 123 65
+                      {phoneNumber || "+965 841 123 65"}
                     </a>
                   </div>
 
@@ -108,8 +114,8 @@ const Footer = () => {
                       className="w-5 h-5 object-contain shrink-0"
                       src={meeseg}
                     />
-                    <a href="mailto:info@media.com" >
-                      info@media.com
+                    <a href={`mailto:${email || "info@media.com"}`} >
+                      {email || "info@media.com"}
                     </a>
                   </div>
                 </div>
@@ -133,16 +139,26 @@ const Footer = () => {
               <div className="flex flex-col items-start">
                 <p className="py-2">تابعنا</p>
                 <div className="flex items-center justify-center gap-4 mt-2">
-                  <a href="">
-                    <FontAwesomeIcon icon={faTelegram} className='text-2xl object-contain'/>
-                  </a>
-                  <a href="">
-                    <FontAwesomeIcon icon={faInstagram} className='text-2xl object-contain'/>
-                  </a>
-                  <a href="">
-                    <FontAwesomeIcon icon={faFacebook} className='text-2xl object-contain' />
-                  </a>
-
+                  {socialLinks?.telegram && (
+                    <a href={socialLinks.telegram} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faTelegram} className='text-2xl object-contain'/>
+                    </a>
+                  )}
+                  {socialLinks?.instagram && (
+                    <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faInstagram} className='text-2xl object-contain'/>
+                    </a>
+                  )}
+                  {socialLinks?.facebook && (
+                    <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faFacebook} className='text-2xl object-contain' />
+                    </a>
+                  )}
+                  {whatsappUrl && (
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faWhatsapp} className='text-2xl object-contain' />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -163,9 +179,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-
     </>
-
   );
 };
 

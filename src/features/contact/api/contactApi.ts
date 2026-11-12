@@ -1,5 +1,5 @@
-import apiClient from '../../../services/apiClient';
-import { ContactPayload, ContactResponse } from '../types/contact.types';
+import { apiClient } from '../../../shared/api/client';
+import type { ContactPayload, ContactResponse } from '../types/contact.types';
 
 export const sendContactMessage = async (
   payload: ContactPayload,

@@ -2,10 +2,18 @@ import SectionHero from '../../../components/ui/SectionHero';
 import ContactInfo from '../components/ContactInfo';
 import SectionTitle from '../../../components/ui/SectionTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import ContactForm from '../components/ContactForm';
 import { Reveal } from '../../../components/ui/Reveal';
+import { useSiteSettings } from '../../../shared/api/useSiteSettings';
+
 const ContactPage = () => {
+  const { settings } = useSiteSettings();
+  const { socialLinks, whatsapp, mapUrl } = settings;
+
+  const cleanWhatsapp = whatsapp ? whatsapp.replace(/[^\d]/g, '') : '';
+  const whatsappUrl = socialLinks?.whatsapp || (cleanWhatsapp ? `https://wa.me/${cleanWhatsapp}` : '');
+
   return (
     <>
       <section>
@@ -31,15 +39,26 @@ const ContactPage = () => {
 
 
                 <div className="flex items-center justify-center gap-4 mt-5 ms-3 ">
-                  <a href="">
-                    <FontAwesomeIcon icon={faTelegram} className='text-2xl object-contain ' />
-                  </a>
-                  <a href="">
-                    <FontAwesomeIcon icon={faInstagram} className='text-2xl object-contain' />
-                  </a>
-                  <a href="">
-                    <FontAwesomeIcon icon={faFacebook} className='text-2xl object-contain' />
-                  </a>
+                  {socialLinks?.telegram && (
+                    <a href={socialLinks.telegram} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faTelegram} className='text-2xl object-contain ' />
+                    </a>
+                  )}
+                  {socialLinks?.instagram && (
+                    <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faInstagram} className='text-2xl object-contain' />
+                    </a>
+                  )}
+                  {socialLinks?.facebook && (
+                    <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faFacebook} className='text-2xl object-contain' />
+                    </a>
+                  )}
+                  {whatsappUrl && (
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faWhatsapp} className='text-2xl object-contain' />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -52,7 +71,13 @@ const ContactPage = () => {
         <Reveal direction="up" delay={0.3}>
           <div>
             <div className="my-10 mb-30">
-              <iframe className='m-auto  rounded-4xl' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103022.83682047778!2d37.06615142134735!3d36.20392390873521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152ff813b98135af%3A0x967e5e5fc542c32a!2sAleppo%2C%20Syria!5e0!3m2!1sen!2sin!4v1793704900134!5m2!1sen!2sin" width="80%" height="450" loading="lazy" ></iframe>
+              <iframe 
+                className='m-auto  rounded-4xl' 
+                src={mapUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103022.83682047778!2d37.06615142134735!3d36.20392390873521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152ff813b98135af%3A0x967e5e5fc542c32a!2sAleppo%2C%20Syria!5e0!3m2!1sen!2sin!4v1793704900134!5m2!1sen!2sin"} 
+                width="80%" 
+                height="450" 
+                loading="lazy" 
+              ></iframe>
             </div>
           </div>
         </Reveal>
@@ -65,4 +90,3 @@ const ContactPage = () => {
 }
 
 export default ContactPage
-

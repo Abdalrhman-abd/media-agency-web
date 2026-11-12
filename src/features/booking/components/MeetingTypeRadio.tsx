@@ -18,42 +18,41 @@ export const MeetingTypeRadio: React.FC<MeetingTypeRadioProps> = ({
       </label>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-120">
+        {/* الخيار الأول: عبر الإنترنت */}
         <label
           className={`flex items-center gap-3 cursor-pointer transition ${
-            value === 'online'
-              ? ' font-medium'
-              : 'text-gray-700 '
+            value === 'ONLINE' ? ' font-medium' : 'text-gray-700 '
           }`}
         >
           <input
             type="radio"
             name="meetingType"
-            value="online"
-            checked={value === 'online'}
-            onChange={(e) => onChange(e.target.value)}
-            className="w-4 h-4 accent-gray-400"
-          />
-          <div>
-            <div className="text-sm font-semibold">حضوري (في مقر الشركة)</div>
-          </div>
-        </label>
-        <label
-          className={`flex items-center gap-3 p-3 cursor-pointer transition ${
-            value === 'in-person'
-              ? ' font-medium'
-              : 'text-gray-700 '
-          }`}
-        >
-          <input
-            type="radio"
-            name="meetingType"
-            value="in-person"
-            checked={value === 'in-person'}
+            value="ONLINE"
+            checked={value === 'ONLINE'}
             onChange={(e) => onChange(e.target.value)}
             className="w-4 h-4 accent-gray-400"
           />
           <div>
             <div className="text-sm font-semibold">عبر الإنترنت (زوم / جوجل ميت)</div>
+          </div>
+        </label>
+
+        {/* الخيار الثاني: حضوري في مقر الشركة */}
+        <label
+          className={`flex items-center gap-3 p-3 cursor-pointer transition ${
+            value === 'IN_PERSON' ? ' font-medium' : 'text-gray-700 '
+          }`}
+        >
+          <input
+            type="radio"
+            name="meetingType"
+            value="IN_PERSON"
+            checked={value === 'IN_PERSON'}
+            onChange={(e) => onChange(e.target.value)}
+            className="w-4 h-4 accent-gray-400"
+          />
+          <div>
+            <div className="text-sm font-semibold">حضوري (في مقر الشركة)</div>
           </div>
         </label>
       </div>

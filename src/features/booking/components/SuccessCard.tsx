@@ -2,9 +2,10 @@ import React from 'react';
 
 interface SuccessCardProps {
   onReset: () => void;
+  reference?: string;
 }
 
-export const SuccessCard: React.FC<SuccessCardProps> = ({ onReset }) => {
+export const SuccessCard: React.FC<SuccessCardProps> = ({ onReset, reference }) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center p-8 rounded-2xl border border-gray-100 shadow-sm text-center max-w-lg mx-auto my-12">
@@ -15,13 +16,18 @@ export const SuccessCard: React.FC<SuccessCardProps> = ({ onReset }) => {
         <p className="text-gray-600 text-sm mb-6">
           شكراً لتواصلك معنا. سنقوم بمراجعة تفاصيل طلبك والتواصل معك في أقرب وقت لتأكيد الموعد.
         </p>
+        {reference && (
+          <p className="text-sm font-semibold text-gray-700">
+            رقم المرجع: {reference}
+          </p>
+        )}
       </div>
-        <button
-          onClick={onReset}
-          className="px-2 py-3 text-white rounded-xl font-medium transition"
-        >
-          حجز موعد جديد
-        </button>
+      <button
+        onClick={onReset}
+        className="px-2 py-3 text-white rounded-xl font-medium transition"
+      >
+        حجز موعد جديد
+      </button>
     </>
   );
 };

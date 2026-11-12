@@ -21,6 +21,7 @@ const App = () => {
         >
           <LanguageDirection />
           <AppRoutes />
+        
         </motion.div>
       </AnimatePresence>
     </QueryClientProvider>

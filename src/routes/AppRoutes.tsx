@@ -11,7 +11,7 @@ const ContactPage = lazy(() => import('../features/contact/pages/ContactPage'));
 const BookingPage = lazy(() => import('../features/booking/pages/BookingPage'));
 const NotFound = lazy(() => import('../features/NotFound/NotFound'));
 const ProjectDetailsPage = lazy(() => import('../features/portfolio/ProjectDetailsPage'));
-
+import Langbutton from "../locales/commponents/Lanbutton"
 // هاد امشان التحميل 
 const PageLoader = () => (
   <div className="flex justify-center items-center min-h-[60vh]">
@@ -34,6 +34,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <Langbutton/>
     </Suspense>
   );
 };

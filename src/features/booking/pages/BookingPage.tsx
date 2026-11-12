@@ -53,41 +53,55 @@ export const BookingPage: React.FC = () => {
       setBookingReference(response.bookingId || 'نجاح');
       setIsSubmitted(true);
     },
-  onError: (error: any) => {
-      console.log("🔥 تفاصيل الخطأ الكاملة:", error);
-      console.log("🔥 محتوى الاستجابة:", error?.response?.data);
-      console.log("🔥 رسالة الخطأ النصية:", error?.message);
-      
-      // <-- أضيفي هذا السطر هنا
-    alert(error?.response?.data?.message || error?.message || 'حدث خطأ في معالجة الطلب');
+    onError: (error: any) => {
+      console.error(
+        "FULL BOOKING ERROR:",
+        JSON.stringify(error, null, 2)
+      );
+
+      console.error("ERROR CODE:", error?.error?.code);
+      console.error("ERROR MESSAGE:", error?.error?.message);
+
+      alert(
+        error?.error?.message ||
+        'حدث خطأ أثناء الحجز'
+      );
     },
   });
 
- const onSubmit = async (data: BookingForm) => {
-    console.log("✅ نجاح التحقق! البيانات المرسلة:", data);
-    
-    try {
-      // تجنب انتظار الكابتشا مؤقتاً لفحص الاستجابة
-      // const recaptchaToken = await getToken('booking');
+  const onSubmit = async (data: BookingForm) => {
+    console.log("بيانات الحجز:", data);
 
+    try {
+      // إنشاء reCAPTCHA Token حقيقي
+      const recaptchaToken = await getToken('booking');
+
+      if (!recaptchaToken) {
+        alert("فشل التحقق الأمني، يرجى المحاولة مرة أخرى");
+        return;
+      }
+
+      console.log("CAPTCHA Token generated successfully");
+
+      // إرسال الحجز
       submitBooking({
         data: {
           fullName: data.fullName,
-          jobTitle: data.jobTitle,
-          companyName: data.companyName,
           phone: data.phone,
           email: data.email,
           serviceId: data.serviceId,
           date: data.date,
           time: data.time,
-          meetingType: data.meetingType.toUpperCase() as 'ONLINE' | 'IN_PERSON',
+          meetingType: data.meetingType.toUpperCase() as
+            'ONLINE' | 'IN_PERSON',
           description: data.description,
-          countryCode: '+963',
         },
-        token: "test-token-bypass", // توكن تجريبي مؤقت لتجاوز الـ Timeout
+        token: recaptchaToken,
       });
+
     } catch (err) {
-      console.error('Submission error:', err);
+      console.error("Submission error:", err);
+      alert("تعذر إكمال التحقق الأمني، يرجى المحاولة مرة أخرى");
     }
   };
 

@@ -7,3 +7,4 @@ export const sendContactMessage = async (
   const response = await apiClient.post<ContactResponse>('/contact', payload);
   return response.data;
 };
+

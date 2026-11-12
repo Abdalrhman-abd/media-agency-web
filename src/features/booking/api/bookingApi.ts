@@ -11,7 +11,7 @@ export const bookingApi = {
   },
 
   getAvailability: async (date: string): Promise<string[]> => {
-    const response = await apiClient.get<AvailableTimesResponse>('/bookings/availability', {
+    const response = await apiClient.get<AvailableTimesResponse>('bookings/availability', {
       params: { date },
     });
     return response.data.data.takenTimes || [];

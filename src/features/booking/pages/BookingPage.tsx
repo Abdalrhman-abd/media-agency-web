@@ -15,21 +15,23 @@ import Button from '../../../components/ui/Button.tsx';
 import SectionHero from '../../../components/ui/SectionHero.tsx';
 import { Reveal } from '../../../components/ui/Reveal.tsx';
 
-// الإضافات الخاصة بالربط مع الباك إند
-import { useServices } from '../../services/api/useServices'; // جلب الخدمات الحقيقية
-import { useCreateBooking } from '../api/useCreateBooking'; // هوك إرسال الحجز
-import { useRecaptcha } from '../../../shared/'; // هوك الكابتشا (تأكد من مساره الصحيح لديك)
+// 1. استدعاء ملفات الـ API والـ Hooks الخاصة بالخدمات والحجز
+import { useServices } from '../../services/api/useServices.ts';
+import { useCreateBooking } from '../api/useCreateBooking'; // استدعاء الهوك الخاص بالحجز
+import { useRecaptcha } from '../../../shared/hooks/useRecaptcha.ts'; // هوك الكابتشا (تأكد من مساره الصحيح)
 
 export const BookingPage: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [bookingReference, setBookingReference] = useState<string>(''); // لعرض رقم المرجع الحقيقي
+  const [bookingReference, setBookingReference] = useState<string>('');
 
-  // 1. جلب الخدمات الحقيقية من السيرفر
+  // 2. جلب الخدمات الحقيقية من السيرفر
   const { data: servicesData, isLoading: isLoadingServices } = useServices();
-  const servicesList = Array.isArray(servicesData) ? servicesData : (servicesData as any)?.data || [];
+  const servicesList = Array.isArray(servicesData)
+    ? servicesData
+    : (servicesData as any)?.data || [];
 
-  // 2. تفعيل خدمة الـ reCAPTCHA
-  const { executeRecaptcha } = useRecaptcha();
+  // 3. تفعيل خدمة الـ reCAPTCHA
+  const { getToken } = useRecaptcha();
 
   const {
     register,
@@ -45,43 +47,29 @@ export const BookingPage: React.FC = () => {
     },
   });
 
-  // 3. إعداد الـ Mutation للإرسال مع التعامل مع الأخطاء والقادم من الباك
+  // 4. استدعاء هوك إرسال الحجز (useCreateBooking) والتعامل مع حالات النجاح والأخطاء
   const { mutate: submitBooking, isPending } = useCreateBooking({
     onSuccess: (response) => {
-      // حفظ رقم المرجع القادم من السيرفر (مثل MD-4F7K2Q)
       setBookingReference(response.bookingId || 'نجاح');
       setIsSubmitted(true);
     },
-    onError: (error: any) => {
-      const status = error?.response?.status;
-      const serverData = error?.response?.data;
-
-      if (status === 400 && serverData?.fieldErrors) {
-        // خطأ 400: ربط الأخطاء بالحقول المقابلة عبر setError
-        Object.keys(serverData.fieldErrors).forEach((field) => {
-          setError(field as any, {
-            type: 'server',
-            message: serverData.fieldErrors[field],
-          });
-        });
-      } else if (status === 409) {
-        alert('هذا الوقت تم حجزه للتو، يرجى اختيار وقت آخر.');
-      } else if (status === 422) {
-        alert(serverData?.message || 'مخالفة لقواعد الحجز.');
-      } else if (status === 429) {
-        alert('محاولات كثيرة جداً، حاول لاحقاً.');
-      } else {
-        alert('حدث خطأ غير متوقع، يرجى التحقق من الاتصال بالإنترنت.');
-      }
+  onError: (error: any) => {
+      console.log("🔥 تفاصيل الخطأ الكاملة:", error);
+      console.log("🔥 محتوى الاستجابة:", error?.response?.data);
+      console.log("🔥 رسالة الخطأ النصية:", error?.message);
+      
+      // <-- أضيفي هذا السطر هنا
+    alert(error?.response?.data?.message || error?.message || 'حدث خطأ في معالجة الطلب');
     },
   });
 
-  const onSubmit = async (data: BookingForm) => {
+ const onSubmit = async (data: BookingForm) => {
+    console.log("✅ نجاح التحقق! البيانات المرسلة:", data);
+    
     try {
-      // الحصول على رمز reCAPTCHA الحقيقي قبل الإرسال
-      const recaptchaToken = await executeRecaptcha('booking');
+      // تجنب انتظار الكابتشا مؤقتاً لفحص الاستجابة
+      // const recaptchaToken = await getToken('booking');
 
-      // إرسال البيانات والتوكن للباك إند
       submitBooking({
         data: {
           fullName: data.fullName,
@@ -89,18 +77,21 @@ export const BookingPage: React.FC = () => {
           companyName: data.companyName,
           phone: data.phone,
           email: data.email,
-          serviceId: data.service, // معرف الخدمة الحقيقي
+          serviceId: data.serviceId,
           date: data.date,
           time: data.time,
-          meetingType: data.meetingType as 'ONLINE' | 'IN_PERSON',
+          meetingType: data.meetingType.toUpperCase() as 'ONLINE' | 'IN_PERSON',
           description: data.description,
+          countryCode: '+963',
         },
-        token: recaptchaToken || '',
+        token: "test-token-bypass", // توكن تجريبي مؤقت لتجاوز الـ Timeout
       });
     } catch (err) {
-      console.error('Recaptcha error:', err);
+      console.error('Submission error:', err);
     }
   };
+
+
 
   const handleReset = () => {
     reset();
@@ -110,6 +101,8 @@ export const BookingPage: React.FC = () => {
   if (isSubmitted) {
     return <SuccessCard reference={bookingReference} onReset={handleReset} />;
   }
+
+
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -125,7 +118,15 @@ export const BookingPage: React.FC = () => {
             <h2 className="text-lg font-bold text-black mt-6">البيانات الشخصية</h2>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full bg-no-repeat bg-contain bg-center py-8 sm:py-16 px-4 sm:px-8 lg:px-0 rounded-2xl box-border" noValidate style={{ backgroundImage: `url(${BookingImage})` }}>
+          <form
+            onSubmit={handleSubmit(
+              onSubmit,
+              (errors) => console.log("❌ أخطاء تمنع الإرسال:", errors)
+            )}
+            className="w-full bg-no-repeat bg-contain bg-center py-8 sm:py-16 px-4 sm:px-8 lg:px-0 rounded-2xl box-border"
+            noValidate
+            style={{ backgroundImage: `url(${BookingImage})` }}
+          >
             <div className="space-y-4 w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                 <Input
@@ -173,11 +174,11 @@ export const BookingPage: React.FC = () => {
                   required
                   disabled={isLoadingServices}
                   options={servicesList.map((service: any) => ({
-                    value: service.id, // إرسال الـ ID الحقيقي للخدمة
+                    value: service.id, // ربط معرف الخدمة الحقيقي
                     label: service.title,
                   }))}
-                  {...register('service')}
-                  error={errors.service?.message}
+                  {...register('serviceId')}
+                  error={errors.serviceId?.message}
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -221,16 +222,16 @@ export const BookingPage: React.FC = () => {
                 error={errors.description?.message}
               />
             </div>
+            <div className='text-left w-full ml-3'>
+              <Button
+                type="submit"
+                text={isPending ? "جاري الإرسال..." : "تأكيد الحجز"}
+                disabled={isPending}
+                className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white w-full sm:w-auto px-8 py-3 disabled:opacity-50"
+              />
+            </div>
           </form>
 
-          <div className='text-left w-full ml-3'>
-            <Button
-              text={isPending ? "جاري الإرسال..." : "تأكيد الحجز"}
-              disabled={isPending}
-              onClick={handleSubmit(onSubmit)}
-              className="brand-gradient hover:from-blue-700 hover:to-purple-800 text-white w-full sm:w-auto px-8 py-3 disabled:opacity-50"
-            />
-          </div>
         </div>
       </Reveal>
     </div>

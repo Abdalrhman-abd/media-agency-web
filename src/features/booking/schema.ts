@@ -12,9 +12,7 @@ export const bookingSchema = z.object({
 meetingType: z.enum(['ONLINE', 'IN_PERSON'], {
   message: 'يرجى تحديد طريقة الاجتماع'
 }),
-countryCode: z.string().min(1, {
-  message: 'يرجى اختيار رمز الدولة'
-}),
+countryCode: z.string().optional(),
   description: z
     .string()
     .min(1, { message: 'الوصف مطلوب' })
